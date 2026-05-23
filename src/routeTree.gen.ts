@@ -9,21 +9,21 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WhyInvestRouteImport } from './routes/why-invest'
 import { Route as TechnologyRouteImport } from './routes/technology'
-import { Route as PlatformRouteImport } from './routes/platform'
 import { Route as InvestorsRouteImport } from './routes/investors'
 import { Route as FranchiseRouteImport } from './routes/franchise'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as IndexRouteImport } from './routes/index'
 
+const WhyInvestRoute = WhyInvestRouteImport.update({
+  id: '/why-invest',
+  path: '/why-invest',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TechnologyRoute = TechnologyRouteImport.update({
   id: '/technology',
   path: '/technology',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PlatformRoute = PlatformRouteImport.update({
-  id: '/platform',
-  path: '/platform',
   getParentRoute: () => rootRouteImport,
 } as any)
 const InvestorsRoute = InvestorsRouteImport.update({
@@ -52,16 +52,16 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/franchise': typeof FranchiseRoute
   '/investors': typeof InvestorsRoute
-  '/platform': typeof PlatformRoute
   '/technology': typeof TechnologyRoute
+  '/why-invest': typeof WhyInvestRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/contact': typeof ContactRoute
   '/franchise': typeof FranchiseRoute
   '/investors': typeof InvestorsRoute
-  '/platform': typeof PlatformRoute
   '/technology': typeof TechnologyRoute
+  '/why-invest': typeof WhyInvestRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -69,8 +69,8 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/franchise': typeof FranchiseRoute
   '/investors': typeof InvestorsRoute
-  '/platform': typeof PlatformRoute
   '/technology': typeof TechnologyRoute
+  '/why-invest': typeof WhyInvestRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -79,24 +79,24 @@ export interface FileRouteTypes {
     | '/contact'
     | '/franchise'
     | '/investors'
-    | '/platform'
     | '/technology'
+    | '/why-invest'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/contact'
     | '/franchise'
     | '/investors'
-    | '/platform'
     | '/technology'
+    | '/why-invest'
   id:
     | '__root__'
     | '/'
     | '/contact'
     | '/franchise'
     | '/investors'
-    | '/platform'
     | '/technology'
+    | '/why-invest'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -104,24 +104,24 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   FranchiseRoute: typeof FranchiseRoute
   InvestorsRoute: typeof InvestorsRoute
-  PlatformRoute: typeof PlatformRoute
   TechnologyRoute: typeof TechnologyRoute
+  WhyInvestRoute: typeof WhyInvestRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/why-invest': {
+      id: '/why-invest'
+      path: '/why-invest'
+      fullPath: '/why-invest'
+      preLoaderRoute: typeof WhyInvestRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/technology': {
       id: '/technology'
       path: '/technology'
       fullPath: '/technology'
       preLoaderRoute: typeof TechnologyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/platform': {
-      id: '/platform'
-      path: '/platform'
-      fullPath: '/platform'
-      preLoaderRoute: typeof PlatformRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/investors': {
@@ -160,8 +160,8 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   FranchiseRoute: FranchiseRoute,
   InvestorsRoute: InvestorsRoute,
-  PlatformRoute: PlatformRoute,
   TechnologyRoute: TechnologyRoute,
+  WhyInvestRoute: WhyInvestRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
