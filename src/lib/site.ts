@@ -17,11 +17,15 @@ export const TEAM_MEMBERS = [
     name: "Yashwant Suthar",
     role: "Founder / CTO",
     bio: "Master of Design, IIT Delhi. 16 years total experience, including 9+ years in public toilet design, operations, and management.",
+    linkedin:
+      "https://www.linkedin.com/in/yashwant-suthar?utm_source=share_via&utm_content=profile&utm_medium=member_android",
   },
   {
     name: "Neelam Singh",
     role: "CEO / Co-Founder",
     bio: "Operations, finance, audit, and quality control leader with 8+ years of public toilet operation and management experience.",
+    linkedin:
+      "https://www.linkedin.com/in/neelam-singh-rathore-66a200194?utm_source=share_via&utm_content=profile&utm_medium=member_android",
   },
   {
     name: "Bhishm Narayan Singh",
