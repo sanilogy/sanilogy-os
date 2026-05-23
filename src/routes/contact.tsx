@@ -1,6 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { Mail, Phone, MapPin, Calendar } from "lucide-react";
+import { Mail, Phone, MapPin, Calendar, MessageCircle, FileText } from "lucide-react";
+
+const WHATSAPP = "https://wa.me/918085952159?text=Hello%20Yashwant%2C%20I%20would%20like%20to%20know%20more%20about%20Sanilogy.";
+const MAILTO = "mailto:yashwant.sanilogy@gmail.com?subject=Sanilogy%20Investment%20Inquiry&body=Hello%20Yashwant%2C%0A%0AI%20would%20like%20to%20connect%20regarding%20Sanilogy.%0A%0ARegards%2C";
 import logo from "@/assets/sanilogy-logo.png";
 
 export const Route = createFileRoute("/contact")({

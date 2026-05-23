@@ -9,12 +9,18 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WhyInvestRouteImport } from './routes/why-invest'
 import { Route as TechnologyRouteImport } from './routes/technology'
 import { Route as InvestorsRouteImport } from './routes/investors'
 import { Route as FranchiseRouteImport } from './routes/franchise'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as IndexRouteImport } from './routes/index'
 
+const WhyInvestRoute = WhyInvestRouteImport.update({
+  id: '/why-invest',
+  path: '/why-invest',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TechnologyRoute = TechnologyRouteImport.update({
   id: '/technology',
   path: '/technology',
@@ -47,6 +53,7 @@ export interface FileRoutesByFullPath {
   '/franchise': typeof FranchiseRoute
   '/investors': typeof InvestorsRoute
   '/technology': typeof TechnologyRoute
+  '/why-invest': typeof WhyInvestRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -54,6 +61,7 @@ export interface FileRoutesByTo {
   '/franchise': typeof FranchiseRoute
   '/investors': typeof InvestorsRoute
   '/technology': typeof TechnologyRoute
+  '/why-invest': typeof WhyInvestRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -62,12 +70,25 @@ export interface FileRoutesById {
   '/franchise': typeof FranchiseRoute
   '/investors': typeof InvestorsRoute
   '/technology': typeof TechnologyRoute
+  '/why-invest': typeof WhyInvestRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/contact' | '/franchise' | '/investors' | '/technology'
+  fullPaths:
+    | '/'
+    | '/contact'
+    | '/franchise'
+    | '/investors'
+    | '/technology'
+    | '/why-invest'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/contact' | '/franchise' | '/investors' | '/technology'
+  to:
+    | '/'
+    | '/contact'
+    | '/franchise'
+    | '/investors'
+    | '/technology'
+    | '/why-invest'
   id:
     | '__root__'
     | '/'
@@ -75,6 +96,7 @@ export interface FileRouteTypes {
     | '/franchise'
     | '/investors'
     | '/technology'
+    | '/why-invest'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -83,10 +105,18 @@ export interface RootRouteChildren {
   FranchiseRoute: typeof FranchiseRoute
   InvestorsRoute: typeof InvestorsRoute
   TechnologyRoute: typeof TechnologyRoute
+  WhyInvestRoute: typeof WhyInvestRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/why-invest': {
+      id: '/why-invest'
+      path: '/why-invest'
+      fullPath: '/why-invest'
+      preLoaderRoute: typeof WhyInvestRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/technology': {
       id: '/technology'
       path: '/technology'
@@ -131,6 +161,7 @@ const rootRouteChildren: RootRouteChildren = {
   FranchiseRoute: FranchiseRoute,
   InvestorsRoute: InvestorsRoute,
   TechnologyRoute: TechnologyRoute,
+  WhyInvestRoute: WhyInvestRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
