@@ -4,27 +4,24 @@ import {
   ArrowRight,
   Cpu,
   Droplets,
-  Zap,
   ShieldCheck,
   Activity,
   Wifi,
-  Sparkles,
   Building2,
   LineChart,
   Bot,
-  Eye,
-  Recycle,
+  Radar,
   Leaf,
   HeartHandshake,
-  Radar,
+  CheckCircle2,
+  FileText,
 } from "lucide-react";
 import heroPod from "@/assets/hero-pod.jpg";
-import cityNetwork from "@/assets/city-network.jpg";
 import dashboardImg from "@/assets/dashboard.jpg";
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } },
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } },
 } as const;
 
 function Section({
@@ -33,36 +30,38 @@ function Section({
   subtitle,
   children,
   id,
+  muted,
 }: {
   eyebrow?: string;
   title?: React.ReactNode;
   subtitle?: string;
   children?: React.ReactNode;
   id?: string;
+  muted?: boolean;
 }) {
   return (
-    <section id={id} className="relative py-28 px-6 lg:px-10">
+    <section id={id} className={`relative py-24 px-6 lg:px-10 ${muted ? "bg-secondary" : "bg-background"}`}>
       <div className="max-w-7xl mx-auto">
         {(eyebrow || title) && (
           <motion.div
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: true, margin: "-80px" }}
             variants={fadeUp}
-            className="max-w-3xl mb-16"
+            className="max-w-3xl mb-14"
           >
             {eyebrow && (
-              <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-primary mb-4">
-                <span className="w-8 h-px bg-primary" /> {eyebrow}
+              <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.18em] text-accent font-semibold mb-4">
+                <span className="w-6 h-px bg-accent" /> {eyebrow}
               </div>
             )}
             {title && (
-              <h2 className="text-4xl md:text-6xl font-display font-semibold text-gradient leading-[1.05]">
+              <h2 className="text-3xl md:text-5xl font-display font-bold text-primary leading-[1.1]">
                 {title}
               </h2>
             )}
             {subtitle && (
-              <p className="mt-6 text-lg text-muted-foreground max-w-2xl">{subtitle}</p>
+              <p className="mt-5 text-lg text-muted-foreground max-w-2xl leading-relaxed">{subtitle}</p>
             )}
           </motion.div>
         )}
@@ -74,126 +73,105 @@ function Section({
 
 function Hero() {
   return (
-    <section className="relative min-h-screen pt-32 pb-20 px-6 lg:px-10 overflow-hidden bg-gradient-hero">
+    <section className="relative pt-32 pb-20 px-6 lg:px-10 overflow-hidden bg-gradient-hero">
       <div className="absolute inset-0 grid-bg opacity-60 pointer-events-none" />
-      <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[900px] h-[900px] rounded-full bg-primary/20 blur-[160px] pointer-events-none" />
-
       <div className="relative max-w-7xl mx-auto grid lg:grid-cols-12 gap-12 items-center">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.7 }}
           className="lg:col-span-7"
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass text-xs text-muted-foreground mb-6">
-            <span className="w-2 h-2 rounded-full bg-primary animate-pulse-glow" />
-            Smart City Infrastructure · AI + IoT
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-border text-xs font-medium text-primary mb-6 shadow-sm">
+            <span className="w-2 h-2 rounded-full bg-accent" />
+            Smart Sanitation Infrastructure · AI + IoT
           </div>
-          <h1 className="text-5xl md:text-7xl lg:text-[5.5rem] font-display font-semibold leading-[0.98] tracking-tight">
-            <span className="text-gradient">Reinventing Public</span>
-            <br />
-            <span className="text-gradient">Sanitation Through </span>
-            <span className="text-gradient-red">AI.</span>
+          <h1 className="text-4xl md:text-6xl lg:text-[4.25rem] font-display font-bold leading-[1.05] tracking-tight text-primary">
+            AI-Powered Public Sanitation Infrastructure for
+            <span className="text-accent"> Cleaner Cities.</span>
           </h1>
-          <p className="mt-7 text-lg md:text-xl text-muted-foreground max-w-xl">
-            Sanilogy transforms public toilets into intelligent, automated,
-            revenue-generating urban infrastructure ecosystems.
+          <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed">
+            Sanilogy combines smart POD toilets, IoT monitoring, automated cleaning, and a
+            facility management SaaS to make public sanitation clean, accountable, and scalable.
           </p>
-          <div className="mt-10 flex flex-wrap gap-3">
+          <div className="mt-9 flex flex-wrap gap-3">
             <Link
-              to="/technology"
-              className="group inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-gradient-red text-primary-foreground font-medium glow-red hover:opacity-95 transition"
+              to="/investors"
+              className="group inline-flex items-center gap-2 px-6 py-3 rounded-md bg-accent text-accent-foreground font-semibold hover:opacity-95 transition shadow-md"
             >
-              Explore Technology
+              Explore Investor Opportunity
               <ArrowRight size={18} className="group-hover:translate-x-1 transition" />
             </Link>
             <Link
-              to="/investors"
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full glass hover:bg-white/[0.06] transition font-medium"
+              to="/technology"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-md bg-white border border-border text-primary font-semibold hover:bg-secondary transition"
             >
-              Investor Relations
-            </Link>
-            <Link
-              to="/contact"
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full glass hover:bg-white/[0.06] transition font-medium"
-            >
-              Book a Demo
+              View Technology
             </Link>
           </div>
 
-          <div className="mt-14 grid grid-cols-3 gap-6 max-w-lg">
+          <div className="mt-12 grid sm:grid-cols-2 gap-3 max-w-2xl">
             {[
-              { v: "98.7%", l: "Cleanliness Score" },
-              { v: "60%", l: "Water Saved" },
-              { v: "24/7", l: "AI Monitoring" },
+              "8+ years public toilet operations experience",
+              "AI + IoT enabled facility management platform",
+              "Designed for ULBs, PPP operators & smart cities",
+              "Scalable from 10 to 10,000+ toilets",
             ].map((s) => (
-              <div key={s.l}>
-                <div className="text-3xl md:text-4xl font-display font-semibold text-gradient-red">
-                  {s.v}
-                </div>
-                <div className="text-xs text-muted-foreground mt-1">{s.l}</div>
+              <div key={s} className="flex items-start gap-2.5 text-sm text-foreground">
+                <CheckCircle2 size={18} className="text-accent flex-shrink-0 mt-0.5" />
+                <span>{s}</span>
               </div>
             ))}
           </div>
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
+          initial={{ opacity: 0, scale: 0.97 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.1, delay: 0.2 }}
+          transition={{ duration: 0.8, delay: 0.15 }}
           className="lg:col-span-5 relative"
         >
-          <div className="relative rounded-3xl overflow-hidden glass-strong shadow-elegant">
+          <div className="relative rounded-2xl overflow-hidden border border-border shadow-elegant bg-white">
             <img
               src={heroPod}
-              alt="Sanilogy Smart POD"
+              alt="Sanilogy Smart POD Toilet"
               width={1920}
               height={1280}
               className="w-full h-auto object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
           </div>
-          {/* Floating KPI cards */}
-          <motion.div
-            animate={{ y: [0, -12, 0] }}
-            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute -left-6 top-10 glass-strong rounded-2xl p-4 w-52 hidden md:block"
-          >
-            <div className="flex items-center gap-2 text-xs text-muted-foreground">
-              <Activity size={14} className="text-primary" /> Live Occupancy
+          <div className="absolute -left-4 top-8 bg-white rounded-xl p-4 w-52 hidden md:block shadow-elegant border border-border">
+            <div className="flex items-center gap-2 text-xs text-muted-foreground font-medium">
+              <Activity size={14} className="text-accent" /> Live Occupancy
             </div>
-            <div className="mt-1 text-2xl font-display font-semibold">12 / 18</div>
-            <div className="mt-2 h-1.5 bg-muted rounded-full overflow-hidden">
-              <div className="h-full w-2/3 bg-gradient-red" />
+            <div className="mt-1 text-2xl font-display font-bold text-primary">12 / 18</div>
+            <div className="mt-2 h-1.5 bg-secondary rounded-full overflow-hidden">
+              <div className="h-full w-2/3 bg-accent" />
             </div>
-          </motion.div>
-          <motion.div
-            animate={{ y: [0, 12, 0] }}
-            transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute -right-4 bottom-10 glass-strong rounded-2xl p-4 w-56 hidden md:block"
-          >
-            <div className="flex items-center gap-2 text-xs text-muted-foreground">
-              <Wifi size={14} className="text-primary" /> IoT Devices
+          </div>
+          <div className="absolute -right-4 bottom-8 bg-white rounded-xl p-4 w-56 hidden md:block shadow-elegant border border-border">
+            <div className="flex items-center gap-2 text-xs text-muted-foreground font-medium">
+              <Wifi size={14} className="text-accent" /> IoT Devices Online
             </div>
-            <div className="mt-1 text-2xl font-display font-semibold">2,148 <span className="text-xs text-muted-foreground">online</span></div>
-            <div className="mt-1 text-xs text-primary">99.98% uptime</div>
-          </motion.div>
+            <div className="mt-1 text-2xl font-display font-bold text-primary">2,148</div>
+            <div className="mt-1 text-xs text-accent font-semibold">99.98% uptime</div>
+          </div>
         </motion.div>
       </div>
     </section>
   );
 }
 
-function LogoStrip() {
-  const items = ["AIRPORTS", "METRO RAIL", "HIGHWAYS", "MUNICIPAL", "SMART CITIES", "RETAIL"];
+function TrustStrip() {
+  const items = ["Smart Cities", "Municipal Corporations", "PPP Operators", "Airports", "Metro Rail", "Highways"];
   return (
-    <section className="border-y border-border bg-card/30">
-      <div className="max-w-7xl mx-auto px-6 lg:px-10 py-8 flex flex-wrap justify-between items-center gap-6">
-        <span className="text-xs uppercase tracking-[0.25em] text-muted-foreground">
-          Built for
+    <section className="border-y border-border bg-white">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 py-7 flex flex-wrap justify-between items-center gap-6">
+        <span className="text-xs uppercase tracking-[0.22em] text-muted-foreground font-semibold">
+          Designed for
         </span>
         {items.map((i) => (
-          <span key={i} className="text-sm font-display tracking-[0.2em] text-muted-foreground/70">
+          <span key={i} className="text-sm font-display font-semibold tracking-wide text-primary/70">
             {i}
           </span>
         ))}
@@ -204,33 +182,30 @@ function LogoStrip() {
 
 function Problem() {
   const items = [
-    "Poor maintenance & accountability",
-    "Unsafe and unhygienic facilities",
-    "Manual, unmonitored operations",
-    "Massive water and energy waste",
-    "Zero data, zero visibility",
-    "Broken user experience",
+    "India has 6.3+ lakh public toilets — many unhygienic and underutilized.",
+    "Manual systems cause inefficiencies, delayed maintenance, low accountability.",
+    "Citizens avoid public toilets due to cleanliness and safety concerns.",
+    "ULBs and PPP operators lack real-time visibility and digital tools.",
   ];
   return (
     <Section
+      muted
       eyebrow="The Problem"
-      title={<>The world&apos;s most overlooked infrastructure is <span className="text-gradient-red">broken.</span></>}
-      subtitle="Public sanitation moves billions of people every day — yet it runs on manual labor, paper logs, and zero intelligence."
+      title={<>Public sanitation is broken at <span className="text-accent">infrastructure scale.</span></>}
+      subtitle="Billions of people rely on public facilities every day — yet operations still run on paper logs, manual labor, and zero intelligence."
     >
-      <div className="grid md:grid-cols-3 gap-4">
+      <div className="grid md:grid-cols-2 gap-4">
         {items.map((t, i) => (
           <motion.div
             key={t}
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: i * 0.05 }}
-            className="glass rounded-2xl p-6 group hover:border-primary/40 transition-all"
+            className="bg-white rounded-xl p-6 border border-border shadow-card flex gap-4"
           >
-            <div className="text-5xl font-display font-semibold text-primary/30 group-hover:text-primary/60 transition">
-              0{i + 1}
-            </div>
-            <p className="mt-3 text-lg">{t}</p>
+            <div className="text-2xl font-display font-bold text-accent">0{i + 1}</div>
+            <p className="text-base text-foreground leading-relaxed">{t}</p>
           </motion.div>
         ))}
       </div>
@@ -240,69 +215,33 @@ function Problem() {
 
 function Solution() {
   const layers = [
-    { icon: Building2, t: "Smart POD Toilets", d: "Self-cleaning, sensor-rich, premium modular hardware." },
-    { icon: Bot, t: "Automation & Robotics", d: "UV, mist, bowl-bots and predictive cleaning cycles." },
-    { icon: Cpu, t: "AI Platform", d: "Cleanliness scoring, predictive maintenance, anomaly detection." },
-    { icon: Radar, t: "IoT Mesh", d: "Occupancy, water, air, energy — every signal, every second." },
-    { icon: LineChart, t: "Revenue OS", d: "Ads, EV charging, premium usage, franchise economics." },
-    { icon: ShieldCheck, t: "Compliance Layer", d: "SLA enforcement, audit trails, smart-city integrations." },
+    { icon: Building2, t: "Auto Clean POD Toilet", d: "Automatic entry, bowl, seat and floor cleaning. Real-time monitoring. Modular, low-cost design." },
+    { icon: Cpu, t: "Precast Toilet Infrastructure", d: "Unibody vandal-proof design. Plug-and-play. Low water use. Ideal for rural and semi-urban." },
+    { icon: Bot, t: "AI + IoT Facility Management Platform", d: "Real-time monitoring, ticketing, inventory, audit, staff & asset tracking — all in one SaaS." },
   ];
   return (
     <Section
       eyebrow="The Sanilogy Stack"
-      title={<>One operating system. <span className="text-gradient-red">Six intelligent layers.</span></>}
-      subtitle="Hardware, software and services unified into a single category-defining infrastructure platform."
+      title={<>Three integrated layers. <span className="text-accent">One platform.</span></>}
+      subtitle="Hardware, infrastructure, and software unified into a single category-defining sanitation operating system."
     >
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid md:grid-cols-3 gap-5">
         {layers.map(({ icon: Icon, t, d }, i) => (
           <motion.div
             key={t}
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: i * 0.05 }}
-            className="relative glass rounded-2xl p-6 overflow-hidden group hover:border-primary/40 transition"
+            transition={{ delay: i * 0.06 }}
+            className="bg-white rounded-xl p-7 border border-border shadow-card hover:shadow-elegant transition"
           >
-            <div className="absolute -right-10 -top-10 w-40 h-40 rounded-full bg-primary/10 blur-3xl group-hover:bg-primary/20 transition" />
-            <Icon size={28} className="text-primary mb-4" />
-            <h3 className="text-xl font-display font-semibold">{t}</h3>
-            <p className="mt-2 text-sm text-muted-foreground">{d}</p>
+            <div className="w-12 h-12 rounded-lg bg-secondary grid place-items-center mb-5">
+              <Icon size={22} className="text-accent" />
+            </div>
+            <h3 className="text-xl font-display font-bold text-primary">{t}</h3>
+            <p className="mt-2.5 text-sm text-muted-foreground leading-relaxed">{d}</p>
           </motion.div>
         ))}
-      </div>
-    </Section>
-  );
-}
-
-function PodShowcase() {
-  const feats = [
-    { i: Droplets, t: "Auto-cleaning Bowl & Floor" },
-    { i: Sparkles, t: "UV Sanitization" },
-    { i: Eye, t: "Touchless Operation" },
-    { i: Radar, t: "Smart Occupancy" },
-    { i: Recycle, t: "Water Optimization" },
-    { i: Wifi, t: "Smart Ventilation" },
-    { i: Zap, t: "EV Charging Ready" },
-    { i: LineChart, t: "Digital Ad Display" },
-  ];
-  return (
-    <Section
-      eyebrow="Smart POD"
-      title={<>A piece of <span className="text-gradient-red">urban infrastructure</span> people actually want to use.</>}
-    >
-      <div className="grid lg:grid-cols-5 gap-8 items-center">
-        <div className="lg:col-span-3 relative rounded-3xl overflow-hidden glass-strong">
-          <img src={heroPod} alt="Smart POD" className="w-full h-full object-cover" loading="lazy" width={1920} height={1280}/>
-          <div className="absolute inset-0 bg-gradient-to-tr from-background/80 via-transparent to-transparent" />
-        </div>
-        <div className="lg:col-span-2 grid grid-cols-2 gap-3">
-          {feats.map(({ i: Icon, t }) => (
-            <div key={t} className="glass rounded-xl p-4">
-              <Icon size={20} className="text-primary mb-2" />
-              <div className="text-sm font-medium leading-snug">{t}</div>
-            </div>
-          ))}
-        </div>
       </div>
     </Section>
   );
@@ -311,41 +250,24 @@ function PodShowcase() {
 function DashboardSection() {
   return (
     <Section
+      muted
       eyebrow="AI + IoT Platform"
-      title={<>A command center for <span className="text-gradient-red">city-scale</span> sanitation.</>}
-      subtitle="Real-time monitoring across every POD, every sensor, every revenue stream — in one enterprise-grade interface."
+      title={<>A command center for <span className="text-accent">city-scale</span> sanitation.</>}
+      subtitle="Real-time monitoring across every facility, every sensor, every revenue stream — in one enterprise-grade interface."
     >
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="relative rounded-3xl overflow-hidden glass-strong shadow-elegant"
-      >
-        <img src={dashboardImg} alt="Sanilogy Dashboard" className="w-full h-auto" loading="lazy" width={1600} height={1024}/>
-        <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent pointer-events-none" />
-        {/* Floating tiles */}
-        <div className="absolute top-6 right-6 hidden md:flex flex-col gap-3">
-          <div className="glass-strong rounded-xl px-4 py-3 w-52">
-            <div className="text-xs text-muted-foreground">Cleanliness</div>
-            <div className="text-2xl font-display font-semibold text-primary">98.7</div>
-          </div>
-          <div className="glass-strong rounded-xl px-4 py-3 w-52">
-            <div className="text-xs text-muted-foreground">Water saved today</div>
-            <div className="text-2xl font-display font-semibold">14,210 L</div>
-          </div>
-        </div>
-      </motion.div>
-
+      <div className="relative rounded-2xl overflow-hidden bg-white border border-border shadow-elegant">
+        <img src={dashboardImg} alt="Sanilogy AI + IoT Dashboard" className="w-full h-auto" loading="lazy" width={1600} height={1024}/>
+      </div>
       <div className="grid md:grid-cols-4 gap-4 mt-8">
         {[
-          { t: "Live Monitoring", d: "Every POD, every sensor, real-time." },
-          { t: "Predictive Maintenance", d: "AI flags issues before users do." },
-          { t: "Revenue Analytics", d: "Ads, EV, premium usage in one view." },
-          { t: "Franchise Management", d: "Multi-location SLA & payouts." },
+          { t: "Live Monitoring", d: "Every facility, every sensor — in real time." },
+          { t: "Predictive Maintenance", d: "AI flags issues before users notice." },
+          { t: "Audit & Quality", d: "Compliance, SLA, and reporting built in." },
+          { t: "Staff & Inventory", d: "Tickets, attendance, assets unified." },
         ].map((c) => (
-          <div key={c.t} className="glass rounded-xl p-5">
-            <div className="text-sm font-semibold">{c.t}</div>
-            <div className="text-xs text-muted-foreground mt-1">{c.d}</div>
+          <div key={c.t} className="bg-white rounded-xl p-5 border border-border">
+            <div className="text-sm font-semibold text-primary">{c.t}</div>
+            <div className="text-xs text-muted-foreground mt-1.5 leading-relaxed">{c.d}</div>
           </div>
         ))}
       </div>
@@ -353,133 +275,71 @@ function DashboardSection() {
   );
 }
 
-function HowItWorks() {
-  const steps = [
-    "User enters the POD",
-    "Occupancy sensors activate",
-    "Usage analytics recorded",
-    "Smart cleaning is triggered",
-    "AI scores cleanliness in real time",
-    "Maintenance alerts dispatched",
-    "Dashboard updates instantly",
+function Market() {
+  const stats = [
+    { v: "4.5L", l: "Addressable units in India" },
+    { v: "₹10,800 Cr", l: "Annual TAM (~$1.3B)" },
+    { v: "₹2,400 Cr", l: "SAM — Tier 1 & 2 cities" },
+    { v: "₹240 Cr", l: "SOM — 3 to 5 year target" },
   ];
   return (
     <Section
-      eyebrow="How It Works"
-      title={<>From a single visit to <span className="text-gradient-red">city-wide intelligence.</span></>}
+      eyebrow="Market Opportunity"
+      title={<>A large addressable market for <span className="text-accent">facility management SaaS.</span></>}
+      subtitle="From 10 buildings to 10,000+ — Sanilogy is built to scale across India's urban sanitation infrastructure."
     >
-      <div className="relative">
-        <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-primary/60 via-primary/20 to-transparent" />
-        <div className="space-y-6">
-          {steps.map((s, i) => (
-            <motion.div
-              key={s}
-              initial={{ opacity: 0, x: i % 2 ? 30 : -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className={`relative md:w-1/2 ${i % 2 ? "md:ml-auto md:pl-12" : "md:pr-12"} pl-12 md:pl-12`}
-            >
-              <div className="absolute left-0 md:left-auto md:right-auto top-4 w-8 h-8 rounded-full bg-gradient-red glow-red grid place-items-center text-primary-foreground font-semibold text-sm"
-                style={{
-                  left: undefined,
-                }}
-              >
-                {i + 1}
-              </div>
-              <div className="glass rounded-2xl p-5 ml-2">
-                <div className="text-xs text-primary uppercase tracking-widest">Step 0{i + 1}</div>
-                <div className="mt-1 text-lg font-display">{s}</div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </Section>
-  );
-}
-
-function BusinessModel() {
-  const streams = [
-    "SaaS Subscriptions",
-    "Franchise Royalties",
-    "Infrastructure Deployment",
-    "Advertising Revenue",
-    "EV Charging Revenue",
-    "Premium Usage",
-    "Analytics Subscriptions",
-  ];
-  return (
-    <Section
-      eyebrow="Business Model"
-      title={<>A <span className="text-gradient-red">multi-stream</span> recurring revenue flywheel.</>}
-      subtitle="Hardware deploys the network. Software compounds the margins. Services lock in the moat."
-    >
-      <div className="grid md:grid-cols-2 gap-10 items-center">
-        <div className="grid grid-cols-2 gap-3">
-          {streams.map((s, i) => (
-            <div key={s} className="glass rounded-xl p-4">
-              <div className="text-xs text-primary">0{i + 1}</div>
-              <div className="text-sm font-medium mt-1">{s}</div>
-            </div>
-          ))}
-        </div>
-        <div className="relative aspect-square max-w-md mx-auto">
-          <div className="absolute inset-0 rounded-full border border-primary/30 animate-pulse-glow" />
-          <div className="absolute inset-8 rounded-full border border-primary/40" />
-          <div className="absolute inset-16 rounded-full border border-primary/60" />
-          <div className="absolute inset-24 rounded-full bg-gradient-red glow-red grid place-items-center">
-            <div className="text-center">
-              <div className="text-3xl font-display font-bold text-primary-foreground">Flywheel</div>
-              <div className="text-xs text-primary-foreground/80">recurring · compounding</div>
-            </div>
+      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {stats.map((s) => (
+          <div key={s.l} className="bg-white rounded-xl p-7 border border-border shadow-card">
+            <div className="text-3xl md:text-4xl font-display font-bold text-primary">{s.v}</div>
+            <div className="mt-2 text-sm text-muted-foreground">{s.l}</div>
           </div>
-        </div>
+        ))}
       </div>
     </Section>
   );
 }
 
 function Investors() {
-  const items = [
-    { v: "$50B+", l: "Global smart sanitation TAM" },
-    { v: "85%+", l: "Gross margin on SaaS layer" },
-    { v: "10x", l: "Revenue per POD vs legacy" },
-    { v: "100+", l: "Cities in deployment pipeline" },
-  ];
   return (
-    <section className="relative py-32 overflow-hidden">
-      <div className="absolute inset-0">
-        <img src={cityNetwork} alt="" className="w-full h-full object-cover opacity-30" loading="lazy" />
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/70 to-background" />
-      </div>
-      <div className="relative max-w-7xl mx-auto px-6 lg:px-10">
-        <div className="max-w-3xl">
-          <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-primary mb-4">
-            <span className="w-8 h-px bg-primary" /> Investor Relations
+    <section className="relative py-24 px-6 lg:px-10 bg-gradient-navy text-white overflow-hidden">
+      <div className="relative max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.18em] text-accent font-semibold mb-4">
+            <span className="w-6 h-px bg-accent" /> Investor Relations
           </div>
-          <h2 className="text-4xl md:text-6xl font-display font-semibold text-gradient leading-[1.05]">
-            A category we are <span className="text-gradient-red">creating</span> — not competing in.
+          <h2 className="text-3xl md:text-5xl font-display font-bold leading-[1.1] text-white">
+            India's first deep-tech platform for <span className="text-accent">clean public infrastructure.</span>
           </h2>
-          <p className="mt-6 text-lg text-muted-foreground">
-            AI + hardware moat. High-margin SaaS. ESG-aligned. Globally scalable.
-            Sanilogy is positioned to define an entire infrastructure layer.
+          <p className="mt-5 text-lg text-white/75 leading-relaxed">
+            Powered by AI, IoT, automation, and 8+ years of real-world public toilet operations experience.
           </p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <a
+              href="/sanilogy-pitch-deck.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-md bg-accent text-accent-foreground font-semibold hover:opacity-95 transition shadow-md"
+            >
+              <FileText size={18} /> View Pitch Deck
+            </a>
+            <Link to="/investors" className="inline-flex items-center gap-2 px-6 py-3 rounded-md bg-white text-primary font-semibold hover:bg-secondary transition">
+              Explore Business Model
+            </Link>
+          </div>
         </div>
-        <div className="grid md:grid-cols-4 gap-4 mt-14">
-          {items.map((s) => (
-            <div key={s.l} className="glass-strong rounded-2xl p-6">
-              <div className="text-4xl font-display font-semibold text-gradient-red">{s.v}</div>
-              <div className="mt-2 text-sm text-muted-foreground">{s.l}</div>
+        <div className="grid grid-cols-2 gap-4">
+          {[
+            { v: "₹10,800 Cr", l: "Annual TAM" },
+            { v: "85%+", l: "SaaS gross margin" },
+            { v: "8+ yrs", l: "Operations experience" },
+            { v: "PPP Ready", l: "ULB & Smart City aligned" },
+          ].map((s) => (
+            <div key={s.l} className="rounded-xl p-6 bg-white/5 border border-white/10 backdrop-blur">
+              <div className="text-3xl font-display font-bold text-accent">{s.v}</div>
+              <div className="mt-2 text-sm text-white/70">{s.l}</div>
             </div>
           ))}
-        </div>
-        <div className="mt-10">
-          <Link
-            to="/investors"
-            className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-gradient-red text-primary-foreground font-medium glow-red"
-          >
-            Investor Deck <ArrowRight size={18} />
-          </Link>
         </div>
       </div>
     </section>
@@ -488,22 +348,26 @@ function Investors() {
 
 function ESG() {
   const items = [
-    { i: HeartHandshake, t: "Women & Public Safety", d: "Lit, monitored, panic-button enabled facilities." },
+    { i: HeartHandshake, t: "Citizen Safety & Dignity", d: "Lit, monitored, accountable facilities for all." },
     { i: Droplets, t: "Water Optimization", d: "Up to 60% reduction in water consumption." },
-    { i: Leaf, t: "Sustainable Infrastructure", d: "Low-energy operation, recyclable modules." },
-    { i: ShieldCheck, t: "Public Health", d: "Continuous sanitization & cleanliness scoring." },
+    { i: Leaf, t: "Sustainable Infrastructure", d: "Low-energy operation and recyclable modules." },
+    { i: ShieldCheck, t: "Public Health", d: "Continuous sanitization and cleanliness scoring." },
   ];
   return (
     <Section
+      muted
       eyebrow="ESG & Impact"
-      title={<>Infrastructure with <span className="text-gradient-red">a conscience.</span></>}
+      title={<>Infrastructure aligned with <span className="text-accent">public good.</span></>}
+      subtitle="Built around Swachh Bharat Mission, Smart City programs, and global ESG reporting standards."
     >
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
         {items.map(({ i: Icon, t, d }) => (
-          <div key={t} className="glass rounded-2xl p-6">
-            <Icon size={26} className="text-primary mb-3" />
-            <div className="text-lg font-display font-semibold">{t}</div>
-            <div className="text-sm text-muted-foreground mt-2">{d}</div>
+          <div key={t} className="bg-white rounded-xl p-6 border border-border shadow-card">
+            <div className="w-11 h-11 rounded-lg bg-secondary grid place-items-center mb-4">
+              <Icon size={20} className="text-accent" />
+            </div>
+            <div className="text-lg font-display font-bold text-primary">{t}</div>
+            <div className="text-sm text-muted-foreground mt-2 leading-relaxed">{d}</div>
           </div>
         ))}
       </div>
@@ -513,26 +377,29 @@ function ESG() {
 
 function FinalCTA() {
   return (
-    <section className="relative py-32 px-6 lg:px-10 overflow-hidden">
-      <div className="absolute inset-0">
-        <img src={cityNetwork} alt="" className="w-full h-full object-cover opacity-40" loading="lazy" />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/40" />
-      </div>
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-primary/20 blur-[160px]" />
+    <section className="relative py-24 px-6 lg:px-10 bg-white border-t border-border">
       <div className="relative max-w-4xl mx-auto text-center">
-        <h2 className="text-4xl md:text-7xl font-display font-semibold text-gradient leading-[1.02]">
-          Building the future <br />operating system for <span className="text-gradient-red">public sanitation.</span>
+        <h2 className="text-3xl md:text-5xl font-display font-bold text-primary leading-[1.1]">
+          Building the operating system for <span className="text-accent">clean public sanitation.</span>
         </h2>
-        <div className="mt-10 flex flex-wrap justify-center gap-3">
-          <Link to="/investors" className="px-6 py-3.5 rounded-full bg-gradient-red text-primary-foreground font-medium glow-red">
+        <p className="mt-5 text-lg text-muted-foreground max-w-2xl mx-auto">
+          Partner with Sanilogy to deploy AI-powered, accountable sanitation infrastructure across your city.
+        </p>
+        <div className="mt-8 flex flex-wrap justify-center gap-3">
+          <Link to="/investors" className="px-6 py-3 rounded-md bg-accent text-accent-foreground font-semibold shadow-md hover:opacity-95 transition">
             Schedule Investor Meeting
           </Link>
-          <Link to="/contact" className="px-6 py-3.5 rounded-full glass font-medium hover:bg-white/[0.06]">
-            Request Live Demo
+          <Link to="/contact" className="px-6 py-3 rounded-md bg-primary text-primary-foreground font-semibold hover:opacity-95 transition">
+            Request a Demo
           </Link>
-          <Link to="/franchise" className="px-6 py-3.5 rounded-full glass font-medium hover:bg-white/[0.06]">
-            Franchise With Sanilogy
-          </Link>
+          <a
+            href="/sanilogy-pitch-deck.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-6 py-3 rounded-md bg-white border border-border text-primary font-semibold hover:bg-secondary transition inline-flex items-center gap-2"
+          >
+            <FileText size={18}/> Download Pitch Deck
+          </a>
         </div>
       </div>
     </section>
@@ -541,18 +408,20 @@ function FinalCTA() {
 
 export default function Home() {
   return (
-    <main className="relative overflow-hidden">
+    <main className="relative">
       <Hero />
-      <LogoStrip />
+      <TrustStrip />
       <Problem />
       <Solution />
-      <PodShowcase />
       <DashboardSection />
-      <HowItWorks />
-      <BusinessModel />
+      <Market />
       <Investors />
       <ESG />
       <FinalCTA />
     </main>
   );
 }
+
+// Silence unused imports warning
+void LineChart;
+void Radar;

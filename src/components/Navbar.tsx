@@ -1,13 +1,15 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
+import logo from "@/assets/sanilogy-logo.png";
+import icon from "@/assets/sanilogy-icon.png";
 
 const links = [
   { to: "/", label: "Home" },
-  { to: "/technology", label: "Technology" },
-  { to: "/platform", label: "AI Platform" },
-  { to: "/investors", label: "Investors" },
-  { to: "/franchise", label: "Franchise" },
+  { to: "/technology", label: "Solutions" },
+  { to: "/platform", label: "Platform" },
+  { to: "/investors", label: "Investor Relations" },
+  { to: "/franchise", label: "Impact" },
   { to: "/contact", label: "Contact" },
 ];
 
@@ -22,68 +24,67 @@ export function Navbar() {
   }, []);
   return (
     <header
-      className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
-        scrolled ? "glass-strong" : "bg-transparent"
+      className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
+        scrolled ? "bg-white/95 backdrop-blur border-b border-border shadow-sm" : "bg-white/80 backdrop-blur-sm"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-10 h-16 flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-2 group">
-          <div className="w-7 h-7 rounded-md bg-gradient-red glow-red grid place-items-center">
-            <span className="text-primary-foreground font-bold text-sm">S</span>
-          </div>
-          <span className="font-display font-semibold tracking-tight text-lg">
-            Sanilogy
-          </span>
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 h-18 py-3 flex items-center justify-between">
+        <Link to="/" className="flex items-center gap-2">
+          <img src={logo} alt="Sanilogy" className="hidden md:block h-8 w-auto" />
+          <img src={icon} alt="Sanilogy" className="md:hidden h-8 w-auto" />
         </Link>
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden lg:flex items-center gap-7">
           {links.map((l) => (
             <Link
               key={l.to}
               to={l.to}
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-              activeProps={{ className: "text-foreground" }}
+              className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+              activeProps={{ className: "text-primary" }}
               activeOptions={{ exact: l.to === "/" }}
             >
               {l.label}
             </Link>
           ))}
         </nav>
-        <div className="hidden md:flex items-center gap-3">
-          <Link
-            to="/contact"
-            className="text-sm px-4 py-2 rounded-full bg-gradient-red text-primary-foreground font-medium hover:opacity-90 transition glow-red"
+        <div className="hidden lg:flex items-center gap-3">
+          <a
+            href="/sanilogy-pitch-deck.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm px-5 py-2.5 rounded-md bg-accent text-accent-foreground font-semibold hover:opacity-90 transition"
           >
-            Book Demo
-          </Link>
+            View Pitch Deck
+          </a>
         </div>
         <button
-          className="md:hidden p-2"
+          className="lg:hidden p-2 text-primary"
           onClick={() => setOpen((o) => !o)}
           aria-label="Toggle menu"
         >
-          {open ? <X size={20} /> : <Menu size={20} />}
+          {open ? <X size={22} /> : <Menu size={22} />}
         </button>
       </div>
       {open && (
-        <div className="md:hidden glass-strong border-t border-border">
+        <div className="lg:hidden bg-white border-t border-border">
           <div className="px-6 py-4 flex flex-col gap-3">
             {links.map((l) => (
               <Link
                 key={l.to}
                 to={l.to}
                 onClick={() => setOpen(false)}
-                className="text-sm text-muted-foreground hover:text-foreground py-1"
+                className="text-sm font-medium text-foreground py-1"
               >
                 {l.label}
               </Link>
             ))}
-            <Link
-              to="/contact"
-              onClick={() => setOpen(false)}
-              className="text-sm px-4 py-2 rounded-full bg-gradient-red text-center text-primary-foreground font-medium mt-2"
+            <a
+              href="/sanilogy-pitch-deck.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm px-4 py-2.5 rounded-md bg-accent text-center text-accent-foreground font-semibold mt-2"
             >
-              Book Demo
-            </Link>
+              View Pitch Deck
+            </a>
           </div>
         </div>
       )}
