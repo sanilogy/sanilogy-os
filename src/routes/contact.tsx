@@ -37,15 +37,20 @@ function ContactPage() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-4 mb-10">
-          <a href="mailto:yashwant.sanilogy@gmail.com" className="bg-white rounded-xl p-6 border border-border shadow-card hover:shadow-elegant transition">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
+          <a href={MAILTO} className="bg-white rounded-xl p-6 border border-border shadow-card hover:shadow-elegant transition">
             <Mail size={22} className="text-accent mb-3"/>
-            <div className="text-sm text-muted-foreground font-medium">Email Us</div>
-            <div className="mt-1 text-primary font-semibold break-all">yashwant.sanilogy@gmail.com</div>
+            <div className="text-sm text-muted-foreground font-medium">Email Founder</div>
+            <div className="mt-1 text-primary font-semibold break-all text-sm">yashwant.sanilogy@gmail.com</div>
+          </a>
+          <a href={WHATSAPP} target="_blank" rel="noopener noreferrer" className="bg-[#25D366] text-white rounded-xl p-6 shadow-card hover:opacity-95 transition">
+            <MessageCircle size={22} className="mb-3"/>
+            <div className="text-sm font-medium opacity-90">WhatsApp Now</div>
+            <div className="mt-1 font-semibold">Chat on WhatsApp</div>
           </a>
           <a href="tel:+918085952159" className="bg-white rounded-xl p-6 border border-border shadow-card hover:shadow-elegant transition">
             <Phone size={22} className="text-accent mb-3"/>
-            <div className="text-sm text-muted-foreground font-medium">Call Founder</div>
+            <div className="text-sm text-muted-foreground font-medium">Call Now</div>
             <div className="mt-1 text-primary font-semibold">+91 80859 52159</div>
           </a>
           <div className="bg-white rounded-xl p-6 border border-border shadow-card">
@@ -53,6 +58,15 @@ function ContactPage() {
             <div className="text-sm text-muted-foreground font-medium">Location</div>
             <div className="mt-1 text-primary font-semibold">Indore, Madhya Pradesh, India</div>
           </div>
+        </div>
+
+        <div className="flex flex-wrap justify-center gap-3 mb-10">
+          <a href="/sanilogy-pitch-deck.pdf" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-md bg-accent text-accent-foreground font-semibold hover:opacity-95 transition">
+            <FileText size={16}/> View Complete Pitch Deck
+          </a>
+          <a href="/sanilogy-pitch-deck.pdf" download className="inline-flex items-center gap-2 px-5 py-2.5 rounded-md bg-white border border-border text-primary font-semibold hover:bg-secondary transition">
+            <FileText size={16}/> Download Pitch Deck
+          </a>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-8">
