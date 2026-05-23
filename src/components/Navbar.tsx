@@ -3,14 +3,14 @@ import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import logo from "@/assets/sanilogy-logo.png";
 import icon from "@/assets/sanilogy-icon.png";
+import { PITCH_DECK_URL } from "@/lib/site";
 
 const links = [
   { to: "/", label: "Home" },
-  { to: "/technology", label: "Solutions" },
-  { to: "/technology", label: "Technology" },
+  { to: "/solutions", label: "Solutions" },
   { to: "/why-invest", label: "Why Invest" },
   { to: "/investors", label: "Investor Relations" },
-  { to: "/franchise", label: "Impact" },
+  { to: "/impact", label: "Impact" },
   { to: "/contact", label: "Contact" },
 ] as const;
 
@@ -26,7 +26,9 @@ export function Navbar() {
   return (
     <header
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-white/95 backdrop-blur border-b border-border shadow-sm" : "bg-white/80 backdrop-blur-sm"
+        scrolled
+          ? "bg-white/95 backdrop-blur border-b border-border shadow-sm"
+          : "bg-white/80 backdrop-blur-sm"
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-10 h-18 py-3 flex items-center justify-between">
@@ -49,7 +51,7 @@ export function Navbar() {
         </nav>
         <div className="hidden lg:flex items-center gap-3">
           <a
-            href="/sanilogy-pitch-deck.pdf"
+            href={PITCH_DECK_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="text-sm px-5 py-2.5 rounded-md bg-accent text-accent-foreground font-semibold hover:opacity-90 transition"
@@ -79,7 +81,7 @@ export function Navbar() {
               </Link>
             ))}
             <a
-              href="/sanilogy-pitch-deck.pdf"
+              href={PITCH_DECK_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm px-4 py-2.5 rounded-md bg-accent text-center text-accent-foreground font-semibold mt-2"

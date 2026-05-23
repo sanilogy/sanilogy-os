@@ -11,7 +11,9 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WhyInvestRouteImport } from './routes/why-invest'
 import { Route as TechnologyRouteImport } from './routes/technology'
+import { Route as SolutionsRouteImport } from './routes/solutions'
 import { Route as InvestorsRouteImport } from './routes/investors'
+import { Route as ImpactRouteImport } from './routes/impact'
 import { Route as FranchiseRouteImport } from './routes/franchise'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as IndexRouteImport } from './routes/index'
@@ -26,9 +28,19 @@ const TechnologyRoute = TechnologyRouteImport.update({
   path: '/technology',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SolutionsRoute = SolutionsRouteImport.update({
+  id: '/solutions',
+  path: '/solutions',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const InvestorsRoute = InvestorsRouteImport.update({
   id: '/investors',
   path: '/investors',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ImpactRoute = ImpactRouteImport.update({
+  id: '/impact',
+  path: '/impact',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FranchiseRoute = FranchiseRouteImport.update({
@@ -51,7 +63,9 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/contact': typeof ContactRoute
   '/franchise': typeof FranchiseRoute
+  '/impact': typeof ImpactRoute
   '/investors': typeof InvestorsRoute
+  '/solutions': typeof SolutionsRoute
   '/technology': typeof TechnologyRoute
   '/why-invest': typeof WhyInvestRoute
 }
@@ -59,7 +73,9 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/contact': typeof ContactRoute
   '/franchise': typeof FranchiseRoute
+  '/impact': typeof ImpactRoute
   '/investors': typeof InvestorsRoute
+  '/solutions': typeof SolutionsRoute
   '/technology': typeof TechnologyRoute
   '/why-invest': typeof WhyInvestRoute
 }
@@ -68,7 +84,9 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/contact': typeof ContactRoute
   '/franchise': typeof FranchiseRoute
+  '/impact': typeof ImpactRoute
   '/investors': typeof InvestorsRoute
+  '/solutions': typeof SolutionsRoute
   '/technology': typeof TechnologyRoute
   '/why-invest': typeof WhyInvestRoute
 }
@@ -78,7 +96,9 @@ export interface FileRouteTypes {
     | '/'
     | '/contact'
     | '/franchise'
+    | '/impact'
     | '/investors'
+    | '/solutions'
     | '/technology'
     | '/why-invest'
   fileRoutesByTo: FileRoutesByTo
@@ -86,7 +106,9 @@ export interface FileRouteTypes {
     | '/'
     | '/contact'
     | '/franchise'
+    | '/impact'
     | '/investors'
+    | '/solutions'
     | '/technology'
     | '/why-invest'
   id:
@@ -94,7 +116,9 @@ export interface FileRouteTypes {
     | '/'
     | '/contact'
     | '/franchise'
+    | '/impact'
     | '/investors'
+    | '/solutions'
     | '/technology'
     | '/why-invest'
   fileRoutesById: FileRoutesById
@@ -103,7 +127,9 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ContactRoute: typeof ContactRoute
   FranchiseRoute: typeof FranchiseRoute
+  ImpactRoute: typeof ImpactRoute
   InvestorsRoute: typeof InvestorsRoute
+  SolutionsRoute: typeof SolutionsRoute
   TechnologyRoute: typeof TechnologyRoute
   WhyInvestRoute: typeof WhyInvestRoute
 }
@@ -124,11 +150,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TechnologyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/solutions': {
+      id: '/solutions'
+      path: '/solutions'
+      fullPath: '/solutions'
+      preLoaderRoute: typeof SolutionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/investors': {
       id: '/investors'
       path: '/investors'
       fullPath: '/investors'
       preLoaderRoute: typeof InvestorsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/impact': {
+      id: '/impact'
+      path: '/impact'
+      fullPath: '/impact'
+      preLoaderRoute: typeof ImpactRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/franchise': {
@@ -159,10 +199,22 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ContactRoute: ContactRoute,
   FranchiseRoute: FranchiseRoute,
+  ImpactRoute: ImpactRoute,
   InvestorsRoute: InvestorsRoute,
+  SolutionsRoute: SolutionsRoute,
   TechnologyRoute: TechnologyRoute,
   WhyInvestRoute: WhyInvestRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}

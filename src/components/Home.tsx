@@ -5,8 +5,6 @@ import {
   Cpu,
   Droplets,
   ShieldCheck,
-  Activity,
-  Wifi,
   Building2,
   LineChart,
   Bot,
@@ -16,12 +14,17 @@ import {
   CheckCircle2,
   FileText,
 } from "lucide-react";
-import heroPod from "@/assets/hero-pod.jpg";
-import dashboardImg from "@/assets/dashboard.jpg";
+import heroPodToilet from "@/assets/hero-pod-toilet-cutout.png";
+import platformDashboard from "@/assets/platform-dashboard.png";
+import { MAILTO_URL, PITCH_DECK_URL } from "@/lib/site";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] },
+  },
 } as const;
 
 function Section({
@@ -40,7 +43,10 @@ function Section({
   muted?: boolean;
 }) {
   return (
-    <section id={id} className={`relative py-24 px-6 lg:px-10 ${muted ? "bg-secondary" : "bg-background"}`}>
+    <section
+      id={id}
+      className={`relative py-24 px-6 lg:px-10 ${muted ? "bg-secondary" : "bg-background"}`}
+    >
       <div className="max-w-7xl mx-auto">
         {(eyebrow || title) && (
           <motion.div
@@ -61,7 +67,9 @@ function Section({
               </h2>
             )}
             {subtitle && (
-              <p className="mt-5 text-lg text-muted-foreground max-w-2xl leading-relaxed">{subtitle}</p>
+              <p className="mt-5 text-lg text-muted-foreground max-w-2xl leading-relaxed">
+                {subtitle}
+              </p>
             )}
           </motion.div>
         )}
@@ -90,9 +98,9 @@ function Hero() {
             AI-Powered Public Sanitation Infrastructure for
             <span className="text-accent"> Cleaner Cities.</span>
           </h1>
-          <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed">
-            Sanilogy combines smart POD toilets, IoT monitoring, automated cleaning, and a
-            facility management SaaS to make public sanitation clean, accountable, and scalable.
+          <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-xl leading-relaxed">
+            Sanilogy combines smart POD toilets, IoT monitoring, automated cleaning, and a facility
+            management SaaS to make public sanitation clean, accountable, and scalable.
           </p>
           <div className="mt-9 flex flex-wrap gap-3">
             <Link
@@ -103,10 +111,10 @@ function Hero() {
               <ArrowRight size={18} className="group-hover:translate-x-1 transition" />
             </Link>
             <Link
-              to="/technology"
+              to="/solutions"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-md bg-white border border-border text-primary font-semibold hover:bg-secondary transition"
             >
-              View Technology
+              View Solutions
             </Link>
           </div>
 
@@ -129,32 +137,16 @@ function Hero() {
           initial={{ opacity: 0, scale: 0.97 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.15 }}
-          className="lg:col-span-5 relative"
+          className="relative lg:col-span-5"
         >
-          <div className="relative rounded-2xl overflow-hidden border border-border shadow-elegant bg-white">
+          <div className="relative mx-auto flex w-full max-w-[34rem] items-center justify-center lg:-ml-2 lg:-mr-14 lg:max-w-none lg:justify-end xl:-mr-20">
             <img
-              src={heroPod}
+              src={heroPodToilet}
               alt="Sanilogy Smart POD Toilet"
-              width={1920}
-              height={1280}
-              className="w-full h-auto object-cover"
+              width={797}
+              height={966}
+              className="h-auto w-full max-h-[38rem] select-none object-contain drop-shadow-[0_28px_50px_rgba(23,32,51,0.18)] md:max-h-[44rem] lg:w-[112%] lg:max-w-none lg:max-h-[48rem] xl:w-[120%] xl:max-h-[52rem]"
             />
-          </div>
-          <div className="absolute -left-4 top-8 bg-white rounded-xl p-4 w-52 hidden md:block shadow-elegant border border-border">
-            <div className="flex items-center gap-2 text-xs text-muted-foreground font-medium">
-              <Activity size={14} className="text-accent" /> Live Occupancy
-            </div>
-            <div className="mt-1 text-2xl font-display font-bold text-primary">12 / 18</div>
-            <div className="mt-2 h-1.5 bg-secondary rounded-full overflow-hidden">
-              <div className="h-full w-2/3 bg-accent" />
-            </div>
-          </div>
-          <div className="absolute -right-4 bottom-8 bg-white rounded-xl p-4 w-56 hidden md:block shadow-elegant border border-border">
-            <div className="flex items-center gap-2 text-xs text-muted-foreground font-medium">
-              <Wifi size={14} className="text-accent" /> IoT Devices Online
-            </div>
-            <div className="mt-1 text-2xl font-display font-bold text-primary">2,148</div>
-            <div className="mt-1 text-xs text-accent font-semibold">99.98% uptime</div>
           </div>
         </motion.div>
       </div>
@@ -163,7 +155,14 @@ function Hero() {
 }
 
 function TrustStrip() {
-  const items = ["Smart Cities", "Municipal Corporations", "PPP Operators", "Airports", "Metro Rail", "Highways"];
+  const items = [
+    "Smart Cities",
+    "Municipal Corporations",
+    "PPP Operators",
+    "Airports",
+    "Metro Rail",
+    "Highways",
+  ];
   return (
     <section className="border-y border-border bg-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-10 py-7 flex flex-wrap justify-between items-center gap-6">
@@ -171,7 +170,10 @@ function TrustStrip() {
           Designed for
         </span>
         {items.map((i) => (
-          <span key={i} className="text-sm font-display font-semibold tracking-wide text-primary/70">
+          <span
+            key={i}
+            className="text-sm font-display font-semibold tracking-wide text-primary/70"
+          >
             {i}
           </span>
         ))}
@@ -191,7 +193,11 @@ function Problem() {
     <Section
       muted
       eyebrow="The Problem"
-      title={<>Public sanitation is broken at <span className="text-accent">infrastructure scale.</span></>}
+      title={
+        <>
+          Public sanitation is broken at <span className="text-accent">infrastructure scale.</span>
+        </>
+      }
       subtitle="Billions of people rely on public facilities every day — yet operations still run on paper logs, manual labor, and zero intelligence."
     >
       <div className="grid md:grid-cols-2 gap-4">
@@ -215,14 +221,30 @@ function Problem() {
 
 function Solution() {
   const layers = [
-    { icon: Building2, t: "Auto Clean POD Toilet", d: "Automatic entry, bowl, seat and floor cleaning. Real-time monitoring. Modular, low-cost design." },
-    { icon: Cpu, t: "Precast Toilet Infrastructure", d: "Unibody vandal-proof design. Plug-and-play. Low water use. Ideal for rural and semi-urban." },
-    { icon: Bot, t: "AI + IoT Facility Management Platform", d: "Real-time monitoring, ticketing, inventory, audit, staff & asset tracking — all in one SaaS." },
+    {
+      icon: Building2,
+      t: "Auto Clean POD Toilet",
+      d: "Automatic entry, bowl, seat and floor cleaning. Real-time monitoring. Modular, low-cost design.",
+    },
+    {
+      icon: Cpu,
+      t: "Precast Toilet Infrastructure",
+      d: "Unibody vandal-proof design. Plug-and-play. Low water use. Ideal for rural and semi-urban.",
+    },
+    {
+      icon: Bot,
+      t: "AI + IoT Facility Management Platform",
+      d: "Real-time monitoring, ticketing, inventory, audit, staff & asset tracking — all in one SaaS.",
+    },
   ];
   return (
     <Section
       eyebrow="The Sanilogy Stack"
-      title={<>Three integrated layers. <span className="text-accent">One platform.</span></>}
+      title={
+        <>
+          Three integrated layers. <span className="text-accent">One platform.</span>
+        </>
+      }
       subtitle="Hardware, infrastructure, and software unified into a single category-defining sanitation operating system."
     >
       <div className="grid md:grid-cols-3 gap-5">
@@ -252,11 +274,22 @@ function DashboardSection() {
     <Section
       muted
       eyebrow="AI + IoT Platform"
-      title={<>A command center for <span className="text-accent">city-scale</span> sanitation.</>}
+      title={
+        <>
+          A command center for <span className="text-accent">city-scale</span> sanitation.
+        </>
+      }
       subtitle="Real-time monitoring across every facility, every sensor, every revenue stream — in one enterprise-grade interface."
     >
       <div className="relative rounded-2xl overflow-hidden bg-white border border-border shadow-elegant">
-        <img src={dashboardImg} alt="Sanilogy AI + IoT Dashboard" className="w-full h-auto" loading="lazy" width={1600} height={1024}/>
+        <img
+          src={platformDashboard}
+          alt="Sanilogy AI + IoT Dashboard"
+          className="w-full h-auto"
+          loading="lazy"
+          width={1600}
+          height={1024}
+        />
       </div>
       <div className="grid md:grid-cols-4 gap-4 mt-8">
         {[
@@ -285,7 +318,12 @@ function Market() {
   return (
     <Section
       eyebrow="Market Opportunity"
-      title={<>A large addressable market for <span className="text-accent">facility management SaaS.</span></>}
+      title={
+        <>
+          A large addressable market for{" "}
+          <span className="text-accent">facility management SaaS.</span>
+        </>
+      }
       subtitle="From 10 buildings to 10,000+ — Sanilogy is built to scale across India's urban sanitation infrastructure."
     >
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -309,21 +347,26 @@ function Investors() {
             <span className="w-6 h-px bg-accent" /> Investor Relations
           </div>
           <h2 className="text-3xl md:text-5xl font-display font-bold leading-[1.1] text-white">
-            India's first deep-tech platform for <span className="text-accent">clean public infrastructure.</span>
+            India's first deep-tech platform for{" "}
+            <span className="text-accent">clean public infrastructure.</span>
           </h2>
           <p className="mt-5 text-lg text-white/75 leading-relaxed">
-            Powered by AI, IoT, automation, and 8+ years of real-world public toilet operations experience.
+            Powered by AI, IoT, automation, and 8+ years of real-world public toilet operations
+            experience.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a
-              href="/sanilogy-pitch-deck.pdf"
+              href={PITCH_DECK_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-md bg-accent text-accent-foreground font-semibold hover:opacity-95 transition shadow-md"
             >
               <FileText size={18} /> View Pitch Deck
             </a>
-            <Link to="/investors" className="inline-flex items-center gap-2 px-6 py-3 rounded-md bg-white text-primary font-semibold hover:bg-secondary transition">
+            <Link
+              to="/investors"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-md bg-white text-primary font-semibold hover:bg-secondary transition"
+            >
               Explore Business Model
             </Link>
           </div>
@@ -335,7 +378,10 @@ function Investors() {
             { v: "8+ yrs", l: "Operations experience" },
             { v: "PPP Ready", l: "ULB & Smart City aligned" },
           ].map((s) => (
-            <div key={s.l} className="rounded-xl p-6 bg-white/5 border border-white/10 backdrop-blur">
+            <div
+              key={s.l}
+              className="rounded-xl p-6 bg-white/5 border border-white/10 backdrop-blur"
+            >
               <div className="text-3xl font-display font-bold text-accent">{s.v}</div>
               <div className="mt-2 text-sm text-white/70">{s.l}</div>
             </div>
@@ -348,7 +394,11 @@ function Investors() {
 
 function ESG() {
   const items = [
-    { i: HeartHandshake, t: "Citizen Safety & Dignity", d: "Lit, monitored, accountable facilities for all." },
+    {
+      i: HeartHandshake,
+      t: "Citizen Safety & Dignity",
+      d: "Lit, monitored, accountable facilities for all.",
+    },
     { i: Droplets, t: "Water Optimization", d: "Up to 60% reduction in water consumption." },
     { i: Leaf, t: "Sustainable Infrastructure", d: "Low-energy operation and recyclable modules." },
     { i: ShieldCheck, t: "Public Health", d: "Continuous sanitization and cleanliness scoring." },
@@ -357,7 +407,11 @@ function ESG() {
     <Section
       muted
       eyebrow="ESG & Impact"
-      title={<>Infrastructure aligned with <span className="text-accent">public good.</span></>}
+      title={
+        <>
+          Infrastructure aligned with <span className="text-accent">public good.</span>
+        </>
+      }
       subtitle="Built around Swachh Bharat Mission, Smart City programs, and global ESG reporting standards."
     >
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -380,25 +434,32 @@ function FinalCTA() {
     <section className="relative py-24 px-6 lg:px-10 bg-white border-t border-border">
       <div className="relative max-w-4xl mx-auto text-center">
         <h2 className="text-3xl md:text-5xl font-display font-bold text-primary leading-[1.1]">
-          Building the operating system for <span className="text-accent">clean public sanitation.</span>
+          Building the operating system for{" "}
+          <span className="text-accent">clean public sanitation.</span>
         </h2>
         <p className="mt-5 text-lg text-muted-foreground max-w-2xl mx-auto">
-          Partner with Sanilogy to deploy AI-powered, accountable sanitation infrastructure across your city.
+          Partner with Sanilogy to deploy AI-powered, accountable sanitation infrastructure across
+          your city.
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
-          <Link to="/investors" className="px-6 py-3 rounded-md bg-accent text-accent-foreground font-semibold shadow-md hover:opacity-95 transition">
+          <a
+            href={MAILTO_URL}
+            className="px-6 py-3 rounded-md bg-accent text-accent-foreground font-semibold shadow-md hover:opacity-95 transition"
+          >
             Schedule Investor Meeting
-          </Link>
-          <Link to="/contact" className="px-6 py-3 rounded-md bg-primary text-primary-foreground font-semibold hover:opacity-95 transition">
+          </a>
+          <Link
+            to="/contact"
+            className="px-6 py-3 rounded-md bg-primary text-primary-foreground font-semibold hover:opacity-95 transition"
+          >
             Request a Demo
           </Link>
           <a
-            href="/sanilogy-pitch-deck.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
+            href={PITCH_DECK_URL}
+            download
             className="px-6 py-3 rounded-md bg-white border border-border text-primary font-semibold hover:bg-secondary transition inline-flex items-center gap-2"
           >
-            <FileText size={18}/> Download Pitch Deck
+            <FileText size={18} /> Download Pitch Deck
           </a>
         </div>
       </div>

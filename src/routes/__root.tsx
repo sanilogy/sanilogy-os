@@ -75,10 +75,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Sanilogy — AI-Powered Public Sanitation Infrastructure" },
-      { name: "description", content: "Sanilogy is India's deep-tech platform for clean public infrastructure — smart POD toilets, IoT monitoring, and AI-powered facility management SaaS." },
+      {
+        name: "description",
+        content:
+          "Sanilogy is India's deep-tech platform for clean public infrastructure — smart POD toilets, IoT monitoring, and AI-powered facility management SaaS.",
+      },
       { name: "author", content: "Sanilogy" },
       { property: "og:title", content: "Sanilogy — AI-Powered Public Sanitation Infrastructure" },
-      { property: "og:description", content: "Smart POD toilets, IoT monitoring, automated cleaning, and facility management SaaS for cleaner, smarter cities." },
+      {
+        property: "og:description",
+        content:
+          "Smart POD toilets, IoT monitoring, automated cleaning, and facility management SaaS for cleaner, smarter cities.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
