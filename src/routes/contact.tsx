@@ -1,13 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin, Calendar } from "lucide-react";
+import logo from "@/assets/sanilogy-logo.png";
 
 export const Route = createFileRoute("/contact")({
   component: ContactPage,
   head: () => ({
     meta: [
       { title: "Contact — Sanilogy" },
-      { name: "description", content: "Get in touch with Sanilogy for demos, partnerships and investor inquiries." },
+      { name: "description", content: "Contact Sanilogy in Indore for demos, partnerships, investor meetings, and government inquiries." },
+      { property: "og:title", content: "Contact — Sanilogy" },
+      { property: "og:description", content: "Email yashwant.sanilogy@gmail.com or call +91 80859 52159." },
     ],
   }),
 });
@@ -15,47 +18,88 @@ export const Route = createFileRoute("/contact")({
 function ContactPage() {
   const [sent, setSent] = useState(false);
   return (
-    <main className="relative min-h-screen pt-40 pb-32 px-6 lg:px-10 bg-gradient-hero overflow-hidden">
+    <main className="relative min-h-screen pt-32 pb-24 px-6 lg:px-10 bg-gradient-hero">
       <div className="absolute inset-0 grid-bg opacity-50 pointer-events-none" />
-      <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[700px] rounded-full bg-primary/15 blur-[160px] pointer-events-none" />
-      <div className="relative max-w-6xl mx-auto grid lg:grid-cols-2 gap-12">
-        <div>
-          <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-primary mb-6">
-            <span className="w-8 h-px bg-primary" /> Contact
+      <div className="relative max-w-6xl mx-auto">
+        <div className="text-center mb-12">
+          <img src={logo} alt="Sanilogy" className="h-10 w-auto mx-auto mb-6" />
+          <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.18em] text-accent font-semibold mb-4">
+            <span className="w-6 h-px bg-accent" /> Contact
           </div>
-          <h1 className="text-5xl md:text-6xl font-display font-semibold text-gradient leading-[1.02]">
-            Let&apos;s build the <span className="text-gradient-red">next city</span> together.
+          <h1 className="text-4xl md:text-6xl font-display font-bold text-primary leading-[1.05]">
+            Let's build <span className="text-accent">cleaner cities</span> together.
           </h1>
-          <p className="mt-6 text-lg text-muted-foreground">
-            Demos, partnerships, investor meetings, franchise inquiries — start the conversation.
+          <p className="mt-5 text-lg text-muted-foreground max-w-2xl mx-auto">
+            Demos, partnerships, investor meetings, government and PPP inquiries — start the conversation.
           </p>
-          <div className="mt-10 space-y-4 text-sm">
-            <div className="flex items-center gap-3"><Mail size={18} className="text-primary"/> hello@sanilogy.com</div>
-            <div className="flex items-center gap-3"><Phone size={18} className="text-primary"/> +1 (000) 000-0000</div>
-            <div className="flex items-center gap-3"><MapPin size={18} className="text-primary"/> Global HQ</div>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-4 mb-10">
+          <a href="mailto:yashwant.sanilogy@gmail.com" className="bg-white rounded-xl p-6 border border-border shadow-card hover:shadow-elegant transition">
+            <Mail size={22} className="text-accent mb-3"/>
+            <div className="text-sm text-muted-foreground font-medium">Email Us</div>
+            <div className="mt-1 text-primary font-semibold break-all">yashwant.sanilogy@gmail.com</div>
+          </a>
+          <a href="tel:+918085952159" className="bg-white rounded-xl p-6 border border-border shadow-card hover:shadow-elegant transition">
+            <Phone size={22} className="text-accent mb-3"/>
+            <div className="text-sm text-muted-foreground font-medium">Call Founder</div>
+            <div className="mt-1 text-primary font-semibold">+91 80859 52159</div>
+          </a>
+          <div className="bg-white rounded-xl p-6 border border-border shadow-card">
+            <MapPin size={22} className="text-accent mb-3"/>
+            <div className="text-sm text-muted-foreground font-medium">Location</div>
+            <div className="mt-1 text-primary font-semibold">Indore, Madhya Pradesh, India</div>
           </div>
         </div>
-        <form
-          onSubmit={(e) => { e.preventDefault(); setSent(true); }}
-          className="glass-strong rounded-3xl p-8 space-y-4"
-        >
-          <div className="grid grid-cols-2 gap-4">
-            <input required placeholder="First name" className="bg-background/40 border border-border rounded-lg px-4 py-3 focus:outline-none focus:border-primary transition"/>
-            <input required placeholder="Last name" className="bg-background/40 border border-border rounded-lg px-4 py-3 focus:outline-none focus:border-primary transition"/>
+
+        <div className="grid lg:grid-cols-2 gap-8">
+          <div className="bg-gradient-navy text-white rounded-2xl p-8 shadow-elegant">
+            <Calendar size={28} className="text-accent mb-4"/>
+            <h3 className="text-2xl font-display font-bold">Schedule an Investor Meeting</h3>
+            <p className="mt-3 text-white/75 leading-relaxed">
+              Speak directly with our founder. Walk through the pitch deck, market opportunity,
+              business model and product roadmap.
+            </p>
+            <div className="mt-6 space-y-3 text-sm">
+              <div className="flex items-center gap-3"><Mail size={16} className="text-accent"/> yashwant.sanilogy@gmail.com</div>
+              <div className="flex items-center gap-3"><Phone size={16} className="text-accent"/> +91 80859 52159</div>
+              <div className="flex items-center gap-3"><MapPin size={16} className="text-accent"/> Indore, Madhya Pradesh, India</div>
+            </div>
+            <a
+              href="/sanilogy-pitch-deck.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex mt-7 items-center gap-2 px-5 py-2.5 rounded-md bg-accent text-accent-foreground font-semibold hover:opacity-95 transition"
+            >
+              View Pitch Deck
+            </a>
           </div>
-          <input required type="email" placeholder="Work email" className="w-full bg-background/40 border border-border rounded-lg px-4 py-3 focus:outline-none focus:border-primary transition"/>
-          <input placeholder="Company" className="w-full bg-background/40 border border-border rounded-lg px-4 py-3 focus:outline-none focus:border-primary transition"/>
-          <select className="w-full bg-background/40 border border-border rounded-lg px-4 py-3 focus:outline-none focus:border-primary transition">
-            <option>I&apos;m interested in a Demo</option>
-            <option>Investor Inquiry</option>
-            <option>Franchise / Partnership</option>
-            <option>Government / Municipal</option>
-          </select>
-          <textarea rows={4} placeholder="Tell us about your project" className="w-full bg-background/40 border border-border rounded-lg px-4 py-3 focus:outline-none focus:border-primary transition"/>
-          <button type="submit" className="w-full px-6 py-3.5 rounded-full bg-gradient-red text-primary-foreground font-medium glow-red hover:opacity-95 transition">
-            {sent ? "Thank you — we'll be in touch." : "Send Message"}
-          </button>
-        </form>
+
+          <form
+            onSubmit={(e) => { e.preventDefault(); setSent(true); }}
+            className="bg-white rounded-2xl p-8 border border-border shadow-elegant space-y-4"
+          >
+            <h3 className="text-xl font-display font-bold text-primary mb-1">Send us a message</h3>
+            <p className="text-sm text-muted-foreground mb-3">We typically respond within 1–2 business days.</p>
+            <div className="grid grid-cols-2 gap-4">
+              <input required placeholder="First name" className="bg-white border border-border rounded-md px-4 py-3 focus:outline-none focus:border-accent text-foreground"/>
+              <input required placeholder="Last name" className="bg-white border border-border rounded-md px-4 py-3 focus:outline-none focus:border-accent text-foreground"/>
+            </div>
+            <input required type="email" placeholder="Work email" className="w-full bg-white border border-border rounded-md px-4 py-3 focus:outline-none focus:border-accent text-foreground"/>
+            <input placeholder="Organization / City" className="w-full bg-white border border-border rounded-md px-4 py-3 focus:outline-none focus:border-accent text-foreground"/>
+            <select className="w-full bg-white border border-border rounded-md px-4 py-3 focus:outline-none focus:border-accent text-foreground">
+              <option>Request a Demo</option>
+              <option>Investor Inquiry</option>
+              <option>Government / Municipal</option>
+              <option>PPP Partnership</option>
+              <option>Franchise / Operator</option>
+            </select>
+            <textarea rows={4} placeholder="Tell us about your project" className="w-full bg-white border border-border rounded-md px-4 py-3 focus:outline-none focus:border-accent text-foreground"/>
+            <button type="submit" className="w-full px-6 py-3.5 rounded-md bg-accent text-accent-foreground font-semibold shadow-md hover:opacity-95 transition">
+              {sent ? "Thank you — we'll be in touch." : "Send Message"}
+            </button>
+          </form>
+        </div>
       </div>
     </main>
   );

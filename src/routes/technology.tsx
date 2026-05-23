@@ -1,40 +1,42 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { FileText } from "lucide-react";
 
 function PageShell({
   eyebrow,
   title,
   subtitle,
+  children,
 }: {
   eyebrow: string;
   title: React.ReactNode;
   subtitle: string;
+  children?: React.ReactNode;
 }) {
   return (
-    <main className="relative min-h-screen pt-40 pb-32 px-6 lg:px-10 bg-gradient-hero overflow-hidden">
+    <main className="relative min-h-screen pt-32 pb-24 px-6 lg:px-10 bg-gradient-hero">
       <div className="absolute inset-0 grid-bg opacity-50 pointer-events-none" />
-      <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[700px] rounded-full bg-primary/15 blur-[160px] pointer-events-none" />
-      <div className="relative max-w-4xl mx-auto text-center">
-        <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-primary mb-6">
-          <span className="w-8 h-px bg-primary" /> {eyebrow}
+      <div className="relative max-w-5xl mx-auto text-center">
+        <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.18em] text-accent font-semibold mb-5">
+          <span className="w-6 h-px bg-accent" /> {eyebrow}
         </div>
-        <h1 className="text-5xl md:text-7xl font-display font-semibold text-gradient leading-[1.02]">
+        <h1 className="text-4xl md:text-6xl font-display font-bold text-primary leading-[1.05]">
           {title}
         </h1>
-        <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto">{subtitle}</p>
-        <div className="mt-10 flex justify-center gap-3">
-          <Link to="/contact" className="px-6 py-3 rounded-full bg-gradient-red text-primary-foreground glow-red font-medium">
-            Book a Demo
+        <p className="mt-5 text-lg text-muted-foreground max-w-2xl mx-auto">{subtitle}</p>
+        <div className="mt-9 flex justify-center gap-3 flex-wrap">
+          <Link to="/contact" className="px-6 py-3 rounded-md bg-accent text-accent-foreground font-semibold shadow-md hover:opacity-95 transition">
+            Request a Demo
           </Link>
-          <Link to="/" className="px-6 py-3 rounded-full glass font-medium hover:bg-white/[0.06]">
-            Back Home
-          </Link>
+          <a
+            href="/sanilogy-pitch-deck.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-md bg-white border border-border text-primary font-semibold hover:bg-secondary transition"
+          >
+            <FileText size={18}/> View Pitch Deck
+          </a>
         </div>
-        <div className="mt-20 glass-strong rounded-3xl p-10 text-left">
-          <p className="text-muted-foreground">
-            This page is part of the Sanilogy investor preview. Detailed content,
-            interactive demos and downloadable materials are being prepared.
-          </p>
-        </div>
+        {children}
       </div>
     </main>
   );
@@ -45,15 +47,28 @@ export { PageShell };
 export const Route = createFileRoute("/technology")({
   component: () => (
     <PageShell
-      eyebrow="Technology"
-      title={<>The intelligence layer for <span className="text-gradient-red">urban sanitation.</span></>}
-      subtitle="AI-powered POD hardware, IoT mesh, and a real-time platform engineered for city-scale deployment."
-    />
+      eyebrow="Solutions"
+      title={<>The intelligence layer for <span className="text-accent">urban sanitation.</span></>}
+      subtitle="Smart POD toilets, precast infrastructure, and an AI + IoT platform engineered for city-scale public sanitation."
+    >
+      <div className="mt-14 grid md:grid-cols-3 gap-5 text-left">
+        {[
+          { t: "Auto Clean POD Toilet", d: "Automatic entry, bowl, seat & floor cleaning with real-time monitoring." },
+          { t: "Precast Infrastructure", d: "Unibody, vandal-proof, plug-and-play modular toilets for rural & urban use." },
+          { t: "AI + IoT Platform", d: "SaaS for monitoring, ticketing, inventory, audit, and staff management." },
+        ].map((c) => (
+          <div key={c.t} className="bg-white rounded-xl p-6 border border-border shadow-card">
+            <h3 className="font-display font-bold text-primary text-lg">{c.t}</h3>
+            <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{c.d}</p>
+          </div>
+        ))}
+      </div>
+    </PageShell>
   ),
   head: () => ({
     meta: [
-      { title: "Technology — Sanilogy" },
-      { name: "description", content: "AI, IoT and automation powering Sanilogy smart sanitation infrastructure." },
+      { title: "Solutions — Sanilogy" },
+      { name: "description", content: "Smart POD toilets, precast infrastructure, and AI + IoT facility management platform from Sanilogy." },
     ],
   }),
 });
