@@ -7,11 +7,12 @@ import icon from "@/assets/sanilogy-icon.png";
 const links = [
   { to: "/", label: "Home" },
   { to: "/technology", label: "Solutions" },
-  { to: "/platform", label: "Platform" },
+  { to: "/technology", label: "Technology" },
+  { to: "/why-invest", label: "Why Invest" },
   { to: "/investors", label: "Investor Relations" },
   { to: "/franchise", label: "Impact" },
   { to: "/contact", label: "Contact" },
-];
+] as const;
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);

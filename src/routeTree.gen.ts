@@ -10,7 +10,6 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TechnologyRouteImport } from './routes/technology'
-import { Route as PlatformRouteImport } from './routes/platform'
 import { Route as InvestorsRouteImport } from './routes/investors'
 import { Route as FranchiseRouteImport } from './routes/franchise'
 import { Route as ContactRouteImport } from './routes/contact'
@@ -19,11 +18,6 @@ import { Route as IndexRouteImport } from './routes/index'
 const TechnologyRoute = TechnologyRouteImport.update({
   id: '/technology',
   path: '/technology',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PlatformRoute = PlatformRouteImport.update({
-  id: '/platform',
-  path: '/platform',
   getParentRoute: () => rootRouteImport,
 } as any)
 const InvestorsRoute = InvestorsRouteImport.update({
@@ -52,7 +46,6 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/franchise': typeof FranchiseRoute
   '/investors': typeof InvestorsRoute
-  '/platform': typeof PlatformRoute
   '/technology': typeof TechnologyRoute
 }
 export interface FileRoutesByTo {
@@ -60,7 +53,6 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/franchise': typeof FranchiseRoute
   '/investors': typeof InvestorsRoute
-  '/platform': typeof PlatformRoute
   '/technology': typeof TechnologyRoute
 }
 export interface FileRoutesById {
@@ -69,33 +61,19 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/franchise': typeof FranchiseRoute
   '/investors': typeof InvestorsRoute
-  '/platform': typeof PlatformRoute
   '/technology': typeof TechnologyRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/contact'
-    | '/franchise'
-    | '/investors'
-    | '/platform'
-    | '/technology'
+  fullPaths: '/' | '/contact' | '/franchise' | '/investors' | '/technology'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/contact'
-    | '/franchise'
-    | '/investors'
-    | '/platform'
-    | '/technology'
+  to: '/' | '/contact' | '/franchise' | '/investors' | '/technology'
   id:
     | '__root__'
     | '/'
     | '/contact'
     | '/franchise'
     | '/investors'
-    | '/platform'
     | '/technology'
   fileRoutesById: FileRoutesById
 }
@@ -104,7 +82,6 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   FranchiseRoute: typeof FranchiseRoute
   InvestorsRoute: typeof InvestorsRoute
-  PlatformRoute: typeof PlatformRoute
   TechnologyRoute: typeof TechnologyRoute
 }
 
@@ -115,13 +92,6 @@ declare module '@tanstack/react-router' {
       path: '/technology'
       fullPath: '/technology'
       preLoaderRoute: typeof TechnologyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/platform': {
-      id: '/platform'
-      path: '/platform'
-      fullPath: '/platform'
-      preLoaderRoute: typeof PlatformRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/investors': {
@@ -160,9 +130,18 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   FranchiseRoute: FranchiseRoute,
   InvestorsRoute: InvestorsRoute,
-  PlatformRoute: PlatformRoute,
   TechnologyRoute: TechnologyRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
