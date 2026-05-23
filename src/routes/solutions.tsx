@@ -10,8 +10,8 @@ import {
   FileText,
   ShieldCheck,
 } from "lucide-react";
-import autoCleanPodFull from "@/assets/technology/auto-clean-pod-full.png";
-import precastConcept from "@/assets/precast-concept.png";
+import autoCleanPodConcept from "@/assets/technology/auto-clean-pod-toilet-concept.png";
+import precastToiletConcept from "@/assets/technology/precast-toilet-concept.png";
 import platformDashboard from "@/assets/platform-dashboard.png";
 import { PITCH_DECK_URL } from "@/lib/site";
 
@@ -63,7 +63,7 @@ const solutions: SolutionCard[] = [
     title: "Auto Clean POD Toilet",
     description:
       "A deep-tech, compact sanitation unit designed for premium public hygiene, high-footfall locations, and automated operations.",
-    image: autoCleanPodFull,
+    image: autoCleanPodConcept,
     imageAlt: "Auto Clean POD Toilet full-width concept model with key features",
     features: [
       "Automatic entry system",
@@ -82,29 +82,6 @@ const solutions: SolutionCard[] = [
       "Plug-and-play deployment",
       "Predictive maintenance alerts",
     ],
-    detailGroups: [
-      {
-        title: "AI + IoT Layer",
-        items: [
-          "Usage-based automated cleaning",
-          "Smart hygiene monitoring",
-          "Real-time performance tracking",
-          "Predictive maintenance alerts",
-        ],
-      },
-      {
-        title: "Automation Layer",
-        items: ["Auto seat and bowl cleaning", "UV sanitization", "Touchless access and payment"],
-      },
-      {
-        title: "Urban Design Layer",
-        items: [
-          "24-30 sq ft footprint",
-          "Anti-vandal engineering",
-          "Modular plug-and-play deployment",
-        ],
-      },
-    ],
   },
   {
     id: "precast",
@@ -112,8 +89,8 @@ const solutions: SolutionCard[] = [
     title: "Precast Toilet Infrastructure",
     description:
       "A durable, low-cost, plug-and-play public toilet infrastructure concept designed for rural, semi-urban, and public facility use.",
-    image: precastConcept,
-    imageAlt: "Precast Toilet Infrastructure concept from the Sanilogy pitch deck",
+    image: precastToiletConcept,
+    imageAlt: "Precast Toilet Infrastructure concept model with key features",
     features: [
       "Unibody infrastructure design",
       "Vandal-proof design",
@@ -131,28 +108,6 @@ const solutions: SolutionCard[] = [
       "Round and seamless edges for safety and easy maintenance",
       "Cast concrete unibody with limestone or epoxy resin finish",
       "Partition wall design for easy demoulding",
-    ],
-    detailGroups: [
-      {
-        title: "Built for Public Facilities",
-        items: [
-          "Durable single-body construction",
-          "Low-maintenance surfaces",
-          "Simple gender navigation",
-        ],
-      },
-      {
-        title: "Rural and Semi-Urban Fit",
-        items: ["Passive ventilation", "Lower water use", "Fast plug-and-play deployment"],
-      },
-      {
-        title: "Material and Safety",
-        items: [
-          "Round seamless edges",
-          "Roof-mounted concealed water tank",
-          "Concrete unibody with durable finish",
-        ],
-      },
     ],
   },
   {
@@ -314,40 +269,42 @@ function SolutionsPage() {
                       </ul>
 
                       {solution.detailGroups && (
-                        <div className="grid gap-4 md:grid-cols-3">
-                          {solution.detailGroups.map((group) => (
-                            <div
-                              key={group.title}
-                              className="flex h-full flex-col rounded-lg border border-border bg-secondary p-5"
-                            >
-                              <div className="mb-3 flex items-center gap-2 text-sm font-semibold text-primary">
-                                <ShieldCheck size={16} className="flex-shrink-0 text-accent" />
-                                {group.title}
+                        <>
+                          <div className="grid gap-4 md:grid-cols-3">
+                            {solution.detailGroups.map((group) => (
+                              <div
+                                key={group.title}
+                                className="flex h-full flex-col rounded-lg border border-border bg-secondary p-5"
+                              >
+                                <div className="mb-3 flex items-center gap-2 text-sm font-semibold text-primary">
+                                  <ShieldCheck size={16} className="flex-shrink-0 text-accent" />
+                                  {group.title}
+                                </div>
+                                <ul className="space-y-1.5 text-sm leading-6 text-muted-foreground">
+                                  {group.items.map((item) => (
+                                    <li key={item}>{item}</li>
+                                  ))}
+                                </ul>
                               </div>
-                              <ul className="space-y-1.5 text-sm leading-6 text-muted-foreground">
-                                {group.items.map((item) => (
-                                  <li key={item}>{item}</li>
-                                ))}
-                              </ul>
-                            </div>
-                          ))}
-                        </div>
-                      )}
+                            ))}
+                          </div>
 
-                      <div className="flex flex-wrap gap-3">
-                        <Link
-                          to="/contact"
-                          className="inline-flex items-center gap-2 rounded-md bg-accent px-5 py-2.5 font-semibold text-accent-foreground shadow-md transition hover:opacity-95"
-                        >
-                          Discuss Deployment <ArrowRight size={16} />
-                        </Link>
-                        <Link
-                          to="/why-invest"
-                          className="inline-flex items-center gap-2 rounded-md border border-border bg-white px-5 py-2.5 font-semibold text-primary transition hover:bg-secondary"
-                        >
-                          Why Invest
-                        </Link>
-                      </div>
+                          <div className="flex flex-wrap gap-3">
+                            <Link
+                              to="/contact"
+                              className="inline-flex items-center gap-2 rounded-md bg-accent px-5 py-2.5 font-semibold text-accent-foreground shadow-md transition hover:opacity-95"
+                            >
+                              Discuss Deployment <ArrowRight size={16} />
+                            </Link>
+                            <Link
+                              to="/why-invest"
+                              className="inline-flex items-center gap-2 rounded-md border border-border bg-white px-5 py-2.5 font-semibold text-primary transition hover:bg-secondary"
+                            >
+                              Why Invest
+                            </Link>
+                          </div>
+                        </>
+                      )}
                     </div>
                   </div>
                 )}

@@ -18,8 +18,8 @@ import {
   Globe2,
   Linkedin,
 } from "lucide-react";
-import podConcept from "@/assets/pod-concept.png";
-import precastConcept from "@/assets/precast-concept.png";
+import autoCleanPodConcept from "@/assets/technology/auto-clean-pod-toilet-concept.png";
+import precastToiletConcept from "@/assets/technology/precast-toilet-concept.png";
 import platformDashboard from "@/assets/platform-dashboard.png";
 import { MAILTO_URL, PITCH_DECK_URL, TEAM_MEMBERS, WHATSAPP_URL } from "@/lib/site";
 
@@ -155,7 +155,7 @@ function WhyInvest() {
           </div>
           <div className="lg:col-span-2 rounded-2xl overflow-hidden border border-border shadow-elegant">
             <img
-              src={precastConcept}
+              src={precastToiletConcept}
               alt="Sanilogy public sanitation infrastructure"
               className="w-full h-full object-contain bg-white"
             />
@@ -193,7 +193,7 @@ function WhyInvest() {
           </div>
           <div className="rounded-2xl overflow-hidden border border-border shadow-elegant">
             <img
-              src={podConcept}
+              src={autoCleanPodConcept}
               alt="Sanilogy POD"
               className="w-full h-auto object-contain bg-white"
             />
@@ -214,7 +214,7 @@ function WhyInvest() {
             {
               i: Building2,
               t: "Auto Clean POD Toilet",
-              img: podConcept,
+              img: autoCleanPodConcept,
               items: [
                 "Automatic entry system",
                 "Toilet bowl + seat cleaning",
@@ -227,7 +227,7 @@ function WhyInvest() {
             {
               i: Cpu,
               t: "Precast Toilet Infrastructure",
-              img: precastConcept,
+              img: precastToiletConcept,
               items: [
                 "Unibody, vandal-proof design",
                 "Plug-and-play deployment",
