@@ -310,7 +310,7 @@ function WhyInvest() {
           ].map(({ i: Icon, t, d }) => (
             <div key={t} className="bg-gradient-navy text-white rounded-xl p-7">
               <Icon size={26} className="text-accent mb-4" />
-              <h3 className="text-lg font-display font-bold">{t}</h3>
+              <h3 className="text-lg font-display font-bold text-white">{t}</h3>
               <p className="mt-2 text-sm text-white/75 leading-relaxed">{d}</p>
             </div>
           ))}
@@ -469,7 +469,7 @@ function WhyInvest() {
           <div className="bg-gradient-navy text-white rounded-2xl p-7">
             <div className="flex items-center gap-2 mb-5">
               <CheckCircle2 className="text-accent" size={22} />
-              <h3 className="font-display font-bold text-lg">What Sanilogy IS</h3>
+              <h3 className="font-display font-bold text-lg text-white">What Sanilogy IS</h3>
             </div>
             <ul className="space-y-3 text-sm text-white/85">
               {[
@@ -717,7 +717,7 @@ function WhyInvest() {
       {/* Section 12 — Final CTA */}
       <section className="relative py-24 px-6 lg:px-10 bg-gradient-navy text-white">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-5xl font-display font-bold leading-[1.1]">
+          <h2 className="text-3xl md:text-5xl font-display font-bold leading-[1.1] text-white">
             Invest in the future of{" "}
             <span className="text-accent">clean public infrastructure.</span>
           </h2>

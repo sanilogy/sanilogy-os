@@ -14,7 +14,7 @@ import {
   CheckCircle2,
   FileText,
 } from "lucide-react";
-import heroPodToilet from "@/assets/hero-pod-toilet-cutout.png";
+import heroPodToilet from "@/assets/home-hero-pod-toilet.png";
 import platformDashboard from "@/assets/platform-dashboard.png";
 import { MAILTO_URL, PITCH_DECK_URL } from "@/lib/site";
 
@@ -88,7 +88,7 @@ function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
-          className="lg:col-span-7"
+          className="lg:col-span-6"
         >
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-border text-xs font-medium text-primary mb-6 shadow-sm">
             <span className="w-2 h-2 rounded-full bg-accent" />
@@ -137,15 +137,15 @@ function Hero() {
           initial={{ opacity: 0, scale: 0.97 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.15 }}
-          className="relative lg:col-span-5"
+          className="relative lg:col-span-6"
         >
-          <div className="relative mx-auto flex w-full max-w-[34rem] items-center justify-center lg:-ml-2 lg:-mr-14 lg:max-w-none lg:justify-end xl:-mr-20">
+          <div className="relative mx-auto flex w-full max-w-[44rem] items-center justify-center lg:-ml-8 lg:-mr-24 lg:max-w-[58rem] lg:justify-end xl:-mr-32">
             <img
               src={heroPodToilet}
               alt="Sanilogy Smart POD Toilet"
-              width={797}
-              height={966}
-              className="h-auto w-full max-h-[38rem] select-none object-contain drop-shadow-[0_28px_50px_rgba(23,32,51,0.18)] md:max-h-[44rem] lg:w-[112%] lg:max-w-none lg:max-h-[48rem] xl:w-[120%] xl:max-h-[52rem]"
+              width={1088}
+              height={820}
+              className="h-auto w-[118%] max-w-none select-none object-contain drop-shadow-[0_28px_50px_rgba(23,32,51,0.18)] sm:w-[112%] md:w-[108%] md:max-h-[38rem] lg:w-[150%] lg:max-h-[46rem] xl:w-[160%] xl:max-h-[50rem]"
             />
           </div>
         </motion.div>
