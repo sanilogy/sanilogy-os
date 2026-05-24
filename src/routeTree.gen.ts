@@ -13,6 +13,7 @@ import { Route as WhyInvestRouteImport } from './routes/why-invest'
 import { Route as TechnologyRouteImport } from './routes/technology'
 import { Route as SolutionsRouteImport } from './routes/solutions'
 import { Route as InvestorsRouteImport } from './routes/investors'
+import { Route as InvestorRelationsRouteImport } from './routes/investor-relations'
 import { Route as ImpactRouteImport } from './routes/impact'
 import { Route as FranchiseRouteImport } from './routes/franchise'
 import { Route as ContactRouteImport } from './routes/contact'
@@ -36,6 +37,11 @@ const SolutionsRoute = SolutionsRouteImport.update({
 const InvestorsRoute = InvestorsRouteImport.update({
   id: '/investors',
   path: '/investors',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InvestorRelationsRoute = InvestorRelationsRouteImport.update({
+  id: '/investor-relations',
+  path: '/investor-relations',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ImpactRoute = ImpactRouteImport.update({
@@ -64,6 +70,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/franchise': typeof FranchiseRoute
   '/impact': typeof ImpactRoute
+  '/investor-relations': typeof InvestorRelationsRoute
   '/investors': typeof InvestorsRoute
   '/solutions': typeof SolutionsRoute
   '/technology': typeof TechnologyRoute
@@ -74,6 +81,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/franchise': typeof FranchiseRoute
   '/impact': typeof ImpactRoute
+  '/investor-relations': typeof InvestorRelationsRoute
   '/investors': typeof InvestorsRoute
   '/solutions': typeof SolutionsRoute
   '/technology': typeof TechnologyRoute
@@ -85,6 +93,7 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/franchise': typeof FranchiseRoute
   '/impact': typeof ImpactRoute
+  '/investor-relations': typeof InvestorRelationsRoute
   '/investors': typeof InvestorsRoute
   '/solutions': typeof SolutionsRoute
   '/technology': typeof TechnologyRoute
@@ -97,6 +106,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/franchise'
     | '/impact'
+    | '/investor-relations'
     | '/investors'
     | '/solutions'
     | '/technology'
@@ -107,6 +117,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/franchise'
     | '/impact'
+    | '/investor-relations'
     | '/investors'
     | '/solutions'
     | '/technology'
@@ -117,6 +128,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/franchise'
     | '/impact'
+    | '/investor-relations'
     | '/investors'
     | '/solutions'
     | '/technology'
@@ -128,6 +140,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   FranchiseRoute: typeof FranchiseRoute
   ImpactRoute: typeof ImpactRoute
+  InvestorRelationsRoute: typeof InvestorRelationsRoute
   InvestorsRoute: typeof InvestorsRoute
   SolutionsRoute: typeof SolutionsRoute
   TechnologyRoute: typeof TechnologyRoute
@@ -162,6 +175,13 @@ declare module '@tanstack/react-router' {
       path: '/investors'
       fullPath: '/investors'
       preLoaderRoute: typeof InvestorsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/investor-relations': {
+      id: '/investor-relations'
+      path: '/investor-relations'
+      fullPath: '/investor-relations'
+      preLoaderRoute: typeof InvestorRelationsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/impact': {
@@ -200,6 +220,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   FranchiseRoute: FranchiseRoute,
   ImpactRoute: ImpactRoute,
+  InvestorRelationsRoute: InvestorRelationsRoute,
   InvestorsRoute: InvestorsRoute,
   SolutionsRoute: SolutionsRoute,
   TechnologyRoute: TechnologyRoute,

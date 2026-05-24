@@ -83,12 +83,12 @@ function Hero() {
   return (
     <section className="relative pt-32 pb-20 px-6 lg:px-10 overflow-hidden bg-gradient-hero">
       <div className="absolute inset-0 grid-bg opacity-60 pointer-events-none" />
-      <div className="relative max-w-7xl mx-auto grid lg:grid-cols-12 gap-12 items-center">
+      <div className="relative mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[minmax(0,0.98fr)_minmax(0,1.02fr)]">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
-          className="lg:col-span-6"
+          className="max-w-3xl"
         >
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-border text-xs font-medium text-primary mb-6 shadow-sm">
             <span className="w-2 h-2 rounded-full bg-accent" />
@@ -104,7 +104,7 @@ function Hero() {
           </p>
           <div className="mt-9 flex flex-wrap gap-3">
             <Link
-              to="/investors"
+              to="/why-invest"
               className="group inline-flex items-center gap-2 px-6 py-3 rounded-md bg-accent text-accent-foreground font-semibold hover:opacity-95 transition shadow-md"
             >
               Explore Investor Opportunity
@@ -137,15 +137,15 @@ function Hero() {
           initial={{ opacity: 0, scale: 0.97 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.15 }}
-          className="relative lg:col-span-6"
+          className="relative"
         >
-          <div className="relative mx-auto flex w-full max-w-[44rem] items-center justify-center lg:-ml-8 lg:-mr-24 lg:max-w-[58rem] lg:justify-end xl:-mr-32">
+          <div className="relative mx-auto flex w-full max-w-[44rem] items-center justify-center lg:max-w-[48rem]">
             <img
               src={heroPodToilet}
               alt="Sanilogy Smart POD Toilet"
               width={1088}
               height={820}
-              className="h-auto w-[118%] max-w-none select-none object-contain drop-shadow-[0_28px_50px_rgba(23,32,51,0.18)] sm:w-[112%] md:w-[108%] md:max-h-[38rem] lg:w-[150%] lg:max-h-[46rem] xl:w-[160%] xl:max-h-[50rem]"
+              className="h-auto w-[112%] max-w-none select-none object-contain drop-shadow-[0_28px_50px_rgba(23,32,51,0.18)] sm:w-[108%] md:w-full md:max-h-[38rem] lg:w-[124%] lg:max-h-[44rem] xl:w-[132%] xl:max-h-[48rem]"
             />
           </div>
         </motion.div>
@@ -184,10 +184,39 @@ function TrustStrip() {
 
 function Problem() {
   const items = [
-    "India has 6.3+ lakh public toilets — many unhygienic and underutilized.",
-    "Manual systems cause inefficiencies, delayed maintenance, low accountability.",
-    "Citizens avoid public toilets due to cleanliness and safety concerns.",
-    "ULBs and PPP operators lack real-time visibility and digital tools.",
+    {
+      text: (
+        <>
+          India has <strong className="font-bold text-primary">6.3+ lakh public toilets</strong> -
+          many remain <strong className="font-bold text-primary">unhygienic</strong> and
+          underutilized.
+        </>
+      ),
+    },
+    {
+      text: (
+        <>
+          Manual systems cause inefficiencies, delayed maintenance, and{" "}
+          <strong className="font-bold text-primary">low accountability</strong>.
+        </>
+      ),
+    },
+    {
+      text: (
+        <>
+          Citizens avoid public toilets due to cleanliness and{" "}
+          <strong className="font-bold text-primary">safety concerns</strong>.
+        </>
+      ),
+    },
+    {
+      text: (
+        <>
+          ULBs and PPP operators lack real-time visibility and integrated{" "}
+          <strong className="font-bold text-primary">digital tools</strong>.
+        </>
+      ),
+    },
   ];
   return (
     <Section
@@ -201,17 +230,17 @@ function Problem() {
       subtitle="Billions of people rely on public facilities every day — yet operations still run on paper logs, manual labor, and zero intelligence."
     >
       <div className="grid md:grid-cols-2 gap-4">
-        {items.map((t, i) => (
+        {items.map(({ text }, i) => (
           <motion.div
-            key={t}
+            key={i}
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: i * 0.05 }}
-            className="bg-white rounded-xl p-6 border border-border shadow-card flex gap-4"
+            className="flex gap-5 rounded-xl border border-border bg-white p-7 shadow-card"
           >
-            <div className="text-2xl font-display font-bold text-accent">0{i + 1}</div>
-            <p className="text-base text-foreground leading-relaxed">{t}</p>
+            <div className="font-display text-3xl font-bold leading-none text-accent">0{i + 1}</div>
+            <p className="text-lg font-medium leading-relaxed text-foreground">{text}</p>
           </motion.div>
         ))}
       </div>
@@ -255,10 +284,10 @@ function Solution() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: i * 0.06 }}
-            className="bg-white rounded-xl p-7 border border-border shadow-card hover:shadow-elegant transition"
+            className="flex h-full flex-col items-center rounded-xl border border-border bg-white p-7 text-center shadow-card transition hover:shadow-elegant"
           >
-            <div className="w-12 h-12 rounded-lg bg-secondary grid place-items-center mb-5">
-              <Icon size={22} className="text-accent" />
+            <div className="mb-5 grid h-16 w-16 place-items-center rounded-xl bg-secondary">
+              <Icon size={28} className="text-accent" />
             </div>
             <h3 className="text-xl font-display font-bold text-primary">{t}</h3>
             <p className="mt-2.5 text-sm text-muted-foreground leading-relaxed">{d}</p>
@@ -364,7 +393,7 @@ function Investors() {
               <FileText size={18} /> View Pitch Deck
             </a>
             <Link
-              to="/investors"
+              to="/why-invest"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-md bg-white text-primary font-semibold hover:bg-secondary transition"
             >
               Explore Business Model

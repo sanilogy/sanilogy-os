@@ -83,6 +83,23 @@ function H2({ children }: { children: React.ReactNode }) {
 }
 
 function WhyInvest() {
+  const raiseAllocation = [
+    { label: "Manpower", value: 57, color: "hsl(var(--accent))", swatch: "bg-accent" },
+    { label: "Prototype", value: 28, color: "hsl(var(--primary))", swatch: "bg-primary" },
+    {
+      label: "Utility & Other Costs",
+      value: 10,
+      color: "hsl(var(--foreground))",
+      swatch: "bg-foreground",
+    },
+    {
+      label: "Contingency Cost",
+      value: 5,
+      color: "hsl(var(--muted-foreground))",
+      swatch: "bg-muted-foreground",
+    },
+  ];
+
   return (
     <main className="relative">
       {/* Hero */}
@@ -634,19 +651,17 @@ function WhyInvest() {
               Capital deployed across team, prototype, operations, and contingency.
             </p>
             <div className="mt-7 space-y-3">
-              {[
-                { l: "Manpower", v: 57, c: "bg-accent" },
-                { l: "Prototype", v: 28, c: "bg-primary" },
-                { l: "Utility & Other Costs", v: 10, c: "bg-foreground" },
-                { l: "Contingency Cost", v: 5, c: "bg-muted-foreground" },
-              ].map((r) => (
-                <div key={r.l}>
+              {raiseAllocation.map((r) => (
+                <div key={r.label}>
                   <div className="flex justify-between text-sm mb-1.5">
-                    <span className="text-foreground">{r.l}</span>
-                    <span className="font-semibold text-primary">{r.v}%</span>
+                    <span className="text-foreground">{r.label}</span>
+                    <span className="font-semibold text-primary">{r.value}%</span>
                   </div>
                   <div className="h-3 bg-white rounded-full overflow-hidden border border-border">
-                    <div className={`h-full ${r.c} rounded-full`} style={{ width: `${r.v}%` }} />
+                    <div
+                      className={`h-full ${r.swatch} rounded-full`}
+                      style={{ width: `${r.value}%` }}
+                    />
                   </div>
                 </div>
               ))}
@@ -658,33 +673,46 @@ function WhyInvest() {
               <Target size={18} /> Discuss Investment Opportunity
             </a>
           </div>
-          <div className="bg-white rounded-2xl p-8 border border-border shadow-elegant">
-            {/* Donut */}
-            <div className="relative w-64 h-64 mx-auto">
-              <svg viewBox="0 0 36 36" className="w-full h-full -rotate-90">
+          <div className="rounded-2xl border border-border bg-white p-8 shadow-elegant">
+            <div className="mb-6 text-center">
+              <div className="text-sm font-semibold uppercase tracking-widest text-accent">
+                Investment Allocation
+              </div>
+              <h3 className="mt-2 font-display text-2xl font-bold text-primary">
+                ₹1.5 Cr deployment plan
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                A clear split across team, prototype, utilities, and operating contingency.
+              </p>
+            </div>
+            <div className="relative mx-auto h-72 w-72 max-w-full">
+              <svg viewBox="0 0 36 36" className="h-full w-full -rotate-90">
+                <circle
+                  cx="18"
+                  cy="18"
+                  r="15.9155"
+                  fill="transparent"
+                  stroke="hsl(var(--secondary))"
+                  strokeWidth="5.2"
+                />
                 {(() => {
-                  const data = [
-                    { v: 57, c: "hsl(var(--accent))" },
-                    { v: 28, c: "hsl(var(--primary))" },
-                    { v: 10, c: "hsl(var(--foreground))" },
-                    { v: 5, c: "hsl(var(--muted-foreground))" },
-                  ];
                   let acc = 0;
-                  return data.map((d, i) => {
-                    const dash = `${d.v} ${100 - d.v}`;
+                  return raiseAllocation.map((d) => {
+                    const dash = `${d.value} ${100 - d.value}`;
                     const off = 25 - acc;
-                    acc += d.v;
+                    acc += d.value;
                     return (
                       <circle
-                        key={i}
+                        key={d.label}
                         cx="18"
                         cy="18"
                         r="15.9155"
                         fill="transparent"
-                        stroke={d.c}
-                        strokeWidth="5.5"
+                        stroke={d.color}
+                        strokeWidth="5.2"
                         strokeDasharray={dash}
                         strokeDashoffset={off}
+                        strokeLinecap="butt"
                       />
                     );
                   });
@@ -697,16 +725,17 @@ function WhyInvest() {
                 </div>
               </div>
             </div>
-            <div className="mt-6 grid grid-cols-2 gap-2 text-xs">
-              {[
-                { l: "Manpower 57%", c: "bg-accent" },
-                { l: "Prototype 28%", c: "bg-primary" },
-                { l: "Utility 10%", c: "bg-foreground" },
-                { l: "Contingency 5%", c: "bg-muted-foreground" },
-              ].map((x) => (
-                <div key={x.l} className="flex items-center gap-2">
-                  <span className={`w-3 h-3 rounded-sm ${x.c}`} />
-                  {x.l}
+            <div className="mt-7 grid gap-3 sm:grid-cols-2">
+              {raiseAllocation.map((x) => (
+                <div
+                  key={x.label}
+                  className="flex items-center justify-between rounded-lg border border-border bg-secondary px-4 py-3 text-sm"
+                >
+                  <div className="flex items-center gap-2">
+                    <span className={`h-3 w-3 rounded-sm ${x.swatch}`} />
+                    <span className="font-medium text-foreground">{x.label}</span>
+                  </div>
+                  <span className="font-display font-bold text-primary">{x.value}%</span>
                 </div>
               ))}
             </div>

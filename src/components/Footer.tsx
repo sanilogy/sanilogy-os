@@ -47,11 +47,6 @@ export function Footer() {
               </Link>
             </li>
             <li>
-              <Link to="/investors" className="text-foreground hover:text-accent">
-                Investor Relations
-              </Link>
-            </li>
-            <li>
               <Link to="/impact" className="text-foreground hover:text-accent">
                 Impact
               </Link>
