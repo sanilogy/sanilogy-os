@@ -1,7 +1,10 @@
 {
-  "$schema": "https://openapi.vercel.sh/vercel.json",
-  "framework": "tanstack-start",
-  "installCommand": "npm install",
   "buildCommand": "npm run build",
-  "outputDirectory": ".output"
+  "outputDirectory": "dist",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
 }
